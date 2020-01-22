@@ -163,9 +163,23 @@ html {
     height: auto;
     margin-bottom: 15px;
     
-    &__container {
-        @include flex-container;
+    @include tablet {
+        margin-bottom: 0;
+        padding: 10px;
     }
+}
+
+.image-container {
+    @include flex-container;
+    justify-content: center;
+
+    @include tablet {
+        .image {
+            width: 30%;
+        }
+    }
+
+    
 }
 
 .article {
@@ -183,8 +197,7 @@ html {
                 width: 50%;
                 padding-right: 30px;
             }
-        }
-        
+        }        
     }
 }
 
