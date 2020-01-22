@@ -43,8 +43,9 @@ html {
             @include text(1rem, 1.5rem);
         }
 
-        h4 {
-            @include text(1.14rem, 1.38rem);
+        h4,
+        p {
+            @include text(0.87rem, 1.38rem);
         }
     }
 }
@@ -95,9 +96,10 @@ html {
     
                 &__links {
                     > * {
-                        width: auto; 
-                        padding: 3vw;
-                        @extend h4;
+                        @include text(1.14rem, 1.38rem){
+                            width: auto; 
+                            padding: 3vw;
+                        }
                     }
                 }
             } 
@@ -173,6 +175,16 @@ html {
                 margin-bottom: 10px;
             }
         }
+    }
+
+    @include tablet {
+        &__blurbs {
+            > * {
+                width: 50%;
+                padding-right: 30px;
+            }
+        }
+        
     }
 }
 
