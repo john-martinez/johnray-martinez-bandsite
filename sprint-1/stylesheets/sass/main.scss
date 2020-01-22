@@ -131,6 +131,10 @@ html {
 .main {
     padding: 10vw 3vw;
     color: $black;
+
+    @include tablet {
+        padding: 3vw;
+    }
 }
 
 .image {
