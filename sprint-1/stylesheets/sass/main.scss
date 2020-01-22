@@ -29,6 +29,24 @@ html {
     p {
         @extend h4;
     }
+
+    @include tablet {
+        h1 {
+            @include text(2.25rem, 2.75rem);
+        }
+
+        h2 {
+            @include text(2rem, 2rem);
+        }
+
+        h3 {
+            @include text(1rem, 1.5rem);
+        }
+
+        h4 {
+            @include text(1.14rem, 1.38rem);
+        }
+    }
 }
 
 .header {
@@ -79,6 +97,7 @@ html {
                     > * {
                         width: auto; 
                         padding: 3vw;
+                        @extend h4;
                     }
                 }
             } 
@@ -133,7 +152,7 @@ html {
     color: $black;
 
     @include tablet {
-        padding: 3vw;
+        padding: 3vw 3vw;
     }
 }
 
