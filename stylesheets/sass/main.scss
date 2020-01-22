@@ -1,0 +1,188 @@
+@import "../partials/mixins";
+@import "../partials/variables";
+@import "../partials/fonts";
+
+* {
+    box-sizing: border-box;
+    transition: .3s ease-out;
+}
+
+html {
+    font-family: "Avenir";
+    body, ul {
+        padding: 0;
+        margin: 0;
+    }
+    
+    h1 {
+        @include text (2rem, 2rem);
+        font-family: "AvenirBold";
+    }
+    h2 {
+        @include text (1.14rem, 1.5rem);
+        font-family: "AvenirBold";
+    }
+    h4 {
+        @include text (1rem, 1.5rem);
+    }
+
+    p {
+        @extend h4;
+    }
+}
+
+.header {
+    background-color: $black;
+
+    .nav {
+        @include flex-container{
+            width: 100vw;
+            height: 100%;
+            align-items: center;
+            color: $silver;
+        }    
+        &__item {
+            @include 
+            flex-container;
+            width: 100%;
+            font-size: 1.25rem;
+            margin-top: 10px;
+    
+            &__links {
+                @include list-reset;
+                @include flex-container;
+                justify-content: space-evenly; 
+                width: 100%;
+    
+                > * {
+                    @include link-reset{
+                        text-align: center;
+                        width: 50%;
+                        padding: 10px 0;
+                    }
+                }
+    
+                &--active {
+                    @include active;
+                }
+            }
+        }
+
+        @include tablet { 
+            width: 100%;
+            &__item {
+                width: auto;
+                align-items: center;  
+                margin-left: 15px;  
+    
+                &__links {
+                    > * {
+                        width: auto; 
+                        padding: 3vw;
+                    }
+                }
+            } 
+        }
+    }
+}
+
+.logo {
+    @include link-reset{
+        width: inherit;
+        text-align: center;
+        font-size: 2rem;
+        color: white;
+    }
+    @include tablet {
+        margin: 0 30px;
+    }
+}
+
+.hero {
+    @include background("../../assets/images/hero.jpg"){
+        height: 60vw;
+        color: white;
+        position: relative;
+    }
+    &__text {
+        position: absolute;
+        font-size: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 5vw;
+        font-family: "AvenirBold";
+    }
+
+    @include tablet {
+        height: 100vh;
+        &__text {
+            @include text(3.5rem, 4.25rem);
+        }
+    }
+}
+
+.overlay {
+    position: absolute;
+    background-color: rgba(0,0,0,0.4);
+    height: 100%;
+    width: 100%;
+}
+
+.main {
+    padding: 10vw 3vw;
+    color: $black;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    
+    &__container {
+        @include flex-container;
+    }
+}
+
+.article {
+    &__blurbs {
+        @include flex-container {
+            > * {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.card {
+    &__blurb {
+        @include strong {
+            margin-bottom: 7vw;
+        };   
+    }
+}
+
+.icon {
+    @include flex-container{
+        justify-content: space-between;
+        width: 50vw;
+    }
+    
+    &__item {
+        width: 2em;
+
+        &:nth-of-type(2){
+            width: calc(2em - 12px);
+        }
+    }
+}
+
+.footer {
+    padding: 5vw 3vw;
+    color: white;
+    background-color: $black;
+    @extend h4;
+
+    &__header {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,67 @@
+@mixin flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    @content;
+}
+
+@mixin link-reset {
+    color: $dark-silver;
+    text-decoration: none;
+    @content;
+}
+
+@mixin list-reset {
+    list-style: none;
+    @content;
+}
+
+@mixin flex-item-centered {
+    justify-content: center;
+    align-items: center;
+    @content;
+}
+
+@mixin active {
+    color: white;
+    border-bottom: 4px solid white;
+    @content;
+}
+
+@mixin background ($url){
+    background-image: url($url);
+    background-size: cover;
+    background-position: center;
+    @content;
+}
+
+@mixin text ($size, $line-height){
+    font-size: $size;
+    line-height: $line-height;
+    @content;
+}
+
+@mixin strong {
+    &--strong {
+        font-family: "Avenir";
+        font-weight: 800;
+    }
+    @content;
+}
+
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint){
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint){
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media screen and (min-width: $large-desktop-breakpoint){
+        @content;
+    }
+}
