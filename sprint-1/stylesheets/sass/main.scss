@@ -241,5 +241,31 @@ html {
         flex-wrap: wrap;
         justify-content: space-between;
     }
+
+    &__logo {
+        @extend .logo;
+        display: none;
+    }
+
+    @include tablet {
+        &__header,
+        .icon {
+            display: inline-block;
+        }
+
+        .icon {
+            margin-left: 20px;
+            width: auto;
+            &__item {
+                margin: 0 20px;
+            }
+        }
+
+        &__logo {
+            @media screen and (min-width:725px) {
+                display: inline-block;
+            }
+        }
+    }
 }
 
