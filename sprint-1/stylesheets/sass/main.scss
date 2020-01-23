@@ -202,10 +202,12 @@ html {
 }
 
 .card {
+    flex: 1 0 33%;
+    min-width: 200px;
     &__blurb {
-        @include strong {
-            margin-bottom: 7vw;
-        };   
+        // @include strong {
+            margin-bottom: 0px;
+        // };   
     }
 }
 
@@ -232,6 +234,12 @@ html {
 
     &__header {
         font-size: 2.5rem;
+    }
+
+    &__contact {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 }
 
