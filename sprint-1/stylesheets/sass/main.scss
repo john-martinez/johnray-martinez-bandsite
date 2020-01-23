@@ -203,12 +203,6 @@ html {
 
 .card {
     flex: 1 0 33%;
-    min-width: 200px;
-    &__blurb {
-        // @include strong {
-            margin-bottom: 0px;
-        // };   
-    }
 }
 
 .icon {
@@ -238,7 +232,7 @@ html {
 
     &__contact {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: space-between;
     }
 
@@ -265,6 +259,10 @@ html {
             @media screen and (min-width:725px) {
                 display: inline-block;
             }
+        }
+
+        &__contact {
+            flex-direction: row;
         }
     }
 }
