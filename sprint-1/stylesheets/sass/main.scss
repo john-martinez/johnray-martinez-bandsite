@@ -226,6 +226,14 @@ html {
     background-color: $black;
     @extend h4;
 
+    &__wrapper {
+        @include flex-container{
+            align-items: baseline;
+            flex-direction: column;
+            position: relative;
+        }
+    }
+
     &__header {
         font-size: 2.5rem;
     }
@@ -245,6 +253,10 @@ html {
         &__header,
         .icon {
             display: inline-block;
+        }
+
+        &__wrapper{
+            flex-direction: row;
         }
 
         .icon {
