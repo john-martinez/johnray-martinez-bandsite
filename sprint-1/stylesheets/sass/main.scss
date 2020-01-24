@@ -104,6 +104,9 @@ html {
                 }
             } 
         }
+        @include desktop{
+            @include desktop-spacing;
+        }
     }
 }
 
@@ -113,9 +116,6 @@ html {
         text-align: center;
         font-size: 2rem;
         color: white;
-    }
-    @include tablet {
-        margin: 0 30px;
     }
 }
 
@@ -130,8 +130,11 @@ html {
         font-size: 2rem;
         top: 50%;
         transform: translateY(-50%);
-        margin: 0 5vw;
         font-family: "AvenirBold";
+
+        @include desktop{
+            @include desktop-spacing;
+        }
     }
 
     @include tablet {
@@ -155,6 +158,10 @@ html {
 
     @include tablet {
         padding: 3vw 3vw;
+    }
+
+    @include desktop{
+        @include desktop-spacing;
     }
 }
 
@@ -213,7 +220,6 @@ html {
 
 .card {
     flex: 1 0 33%;
-
     &__blurb {
         > p > span {
             display: block;
@@ -275,6 +281,10 @@ html {
             display: flex;
         }
 
+        &__header {
+            flex-wrap: wrap;
+        }  
+
         &__wrapper{
             flex-direction: row;
 
@@ -286,7 +296,6 @@ html {
         }
 
         .icon {
-            margin-left: 20px;
             width: auto;
             &__item {
                 margin: 0 20px;
@@ -294,14 +303,30 @@ html {
         }
 
         &__logo {
-            @media screen and (min-width:725px) {
+            @media screen and (min-width: 705px) {
                 display: inline-block;
             }
+
+            @media screen and (min-width: 767px) {
+                display: none;
+            }
+
+            @media screen and (min-width: 800px) {
+                display: inline-block;
+            }
+
+
+            
         }
 
         &__contact {
             flex-direction: row;
+            flex-wrap:wrap;
         }
+    }
+    
+    @include desktop{
+        @include desktop-spacing;
     }
 }
 
