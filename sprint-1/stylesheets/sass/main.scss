@@ -173,13 +173,20 @@ html {
     @include flex-container;
     justify-content: center;
 
+    .image {
+        filter: grayscale(1);
+
+        &:hover {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+    }
+
     @include tablet {
         .image {
             width: 30%;
         }
-    }
-
-    
+    } 
 }
 
 .article {
