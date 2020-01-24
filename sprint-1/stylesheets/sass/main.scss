@@ -216,6 +216,12 @@ html {
             }
         }        
     }
+
+    @include desktop {
+        &__main{
+            padding: 0 5vw;
+        }
+    }
 }
 
 .card {
@@ -314,9 +320,6 @@ html {
             @media screen and (min-width: 800px) {
                 display: inline-block;
             }
-
-
-            
         }
 
         &__contact {
