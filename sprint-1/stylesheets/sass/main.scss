@@ -14,6 +14,11 @@ html {
         margin: 0;  
     }
     
+    a{
+        @include link-reset;
+        color: #fff;
+    }
+
     h1 {
         @include text (2rem, 2rem);
         font-family: "AvenirBold";
@@ -79,6 +84,11 @@ html {
                         width: 50%;
                         padding: 10px 0;
                     }
+
+                    &:hover {
+                        color: orange;
+                        border-color: orange;
+                    }
                 }
     
                 &--active {
@@ -98,14 +108,14 @@ html {
                     > * {
                         @include text(1.14rem, 1.38rem){
                             width: auto; 
-                            padding: 3vw;
+                            padding: 15px 35px;
                         }
                     }
                 }
             } 
         }
         @include desktop{
-            @include desktop-spacing;
+            @include site-padding;
         }
     }
 }
@@ -126,21 +136,24 @@ html {
         position: relative;
     }
     &__text {
+        @include text(2rem, 3rem);
         position: absolute;
-        font-size: 2rem;
+        padding: 10vw 3vw;
         top: 50%;
         transform: translateY(-50%);
         font-family: "AvenirBold";
-
-        @include desktop{
-            @include desktop-spacing;
-        }
     }
 
     @include tablet {
         height: 100vh;
         &__text {
             @include text(3.5rem, 4.25rem);
+        }
+    }
+    @include desktop {
+        &__text {
+            @include text(5rem, 7rem);
+            @include site-padding;
         }
     }
 }
@@ -161,7 +174,7 @@ html {
     }
 
     @include desktop{
-        @include desktop-spacing;
+        @include site-padding;
     }
 }
 
@@ -179,7 +192,6 @@ html {
     @include flex-container{
         align-content: space-between;
     };
-    // justify-content: center;
 
     .image {
         filter: grayscale(1);
@@ -309,7 +321,7 @@ html {
         }
 
         &__logo {
-            @media screen and (min-width: 705px) {
+            @media screen and (min-width: 625px) {
                 display: inline-block;
             }
 
@@ -329,7 +341,7 @@ html {
     }
     
     @include desktop{
-        @include desktop-spacing;
+        @include site-padding;
     }
 }
 
