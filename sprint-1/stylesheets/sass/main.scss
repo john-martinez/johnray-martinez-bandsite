@@ -11,7 +11,7 @@ html {
     font-family: "Avenir";
     body, ul {
         padding: 0;
-        margin: 0;
+        margin: 0;  
     }
     
     h1 {
@@ -164,17 +164,20 @@ html {
     margin-bottom: 15px;
     
     @include tablet {
-        margin-bottom: 0;
-        padding: 10px;
+        margin-bottom: 0;   
     }
 }
 
 .image-container {
-    @include flex-container;
-    justify-content: center;
+    @include flex-container{
+        align-content: space-between;
+    };
+    // justify-content: center;
 
     .image {
         filter: grayscale(1);
+        flex-grow: 1;
+        margin: 0 15px 15px 0;
 
         &:hover {
             filter: grayscale(0);
@@ -210,6 +213,16 @@ html {
 
 .card {
     flex: 1 0 33%;
+
+    &__blurb {
+        > p > span {
+            display: block;
+            
+            @include tablet {
+                display: inline-block;
+            }
+        }
+    }
 }
 
 .icon {
