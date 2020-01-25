@@ -93,7 +93,6 @@ html {
 
 .main {
    width: 100%; 
-   @include set-padding(12vh, 3vw);
 }
 
 .image {
@@ -106,6 +105,7 @@ html {
 }
 
 .gallery-container {
+    background-color: $light-silver;    
    @include desktop{
         @include set-padding;
    }
@@ -117,14 +117,13 @@ html {
 
     &__image {
         @include image;
+        @include zoom-on-hover {
+            filter: grayscale(0);
+        }
+
         filter: grayscale(1);
         margin: 0 15px 15px 0;
-
-        &:hover {
-            filter: grayscale(0);
-            transform: scale(1.1);
-            z-index: 100; // to put image on top upon hovering
-        }
+        
     }
 
     @include tablet {
@@ -153,6 +152,8 @@ html {
     }
 
     @include tablet {
+        @include set-padding(3vw, 3vw);
+
         &__blurbs {
             > * {
                 width: 50%;
@@ -162,13 +163,7 @@ html {
     }
 
     @include desktop {
-        &__main{
-            @include set-padding(0, 5vw);
-        }
-    }
-
-    @include tablet {
-        @include set-padding(3vw, 3vw);
+        @include set-padding;
     }
 }
 
