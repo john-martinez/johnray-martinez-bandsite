@@ -8,54 +8,34 @@
 }
 
 html {
-    font-family: "Avenir";
-    body, ul {
-        padding: 0;
-        margin: 0;  
+    font-family: $primary-font;
+
+    body,
+    ul {
+        @include box-reset;
     }
     
     a{
         @include link-reset;
-        color: #fff;
+        color: $white;
     }
 
-    h1 {
+    h1,
+    h2 {
         @include text (2rem, 2rem);
-        font-family: "AvenirBold";
+        font-family: $primary-font-bold;
     }
     h2 {
         @include text (1.14rem, 1.5rem);
-        font-family: "AvenirBold";
     }
-    h4 {
+    h4,p {
         @include text (1rem, 1.5rem);
     }
 
-    p {
-        @extend h4;
-    }
-
-    @include tablet {
-        h1 {
-            @include text(2.25rem, 2.75rem);
-        }
-
-        h2 {
-            @include text(2rem, 2rem);
-        }
-
-        h3 {
-            @include text(1rem, 1.5rem);
-        }
-
-        h4,
-        p {
-            @include text(0.87rem, 1.38rem);
-        }
-    }
-
-    @include desktop {
-        font-size: 18px;
+    //change font size on screen resize
+    @include tablet { 
+        font-size: 17px;
+        line-height: 130%; 
     }
 }
 
@@ -63,73 +43,7 @@ html {
     background-color: $black;
 
     .nav {
-        @include flex-container{
-            width: 100vw;
-            height: 100%;
-            align-items: center;
-            color: $silver;
-        }    
-        &__item {
-            @include 
-            flex-container;
-            width: 100%;
-            font-size: 1.25rem;
-            margin-top: 10px;
-    
-            &__links {
-                @include list-reset;
-                @include flex-container;
-                justify-content: space-evenly; 
-                width: 100%;
-    
-                > * {
-                    @include link-reset{
-                        text-align: center;
-                        width: 50%;
-                        padding: 10px 0;
-
-                        > * {
-                            display: inline-block;
-                            height: 100%;
-                        }
-                    }
-
-                    &:hover {
-                        border-color: orange;
-                        cursor: pointer;
-                        > * {
-                            color: orange;
-                            transform: translateY(-5px); 
-                        }
-                    }
-                }
-    
-                &--active {
-                    @include active;
-                }
-            }
-        }
-
-        @include tablet { 
-            width: 100%;
-            &__item {
-                width: auto;
-                align-items: center;  
-                margin-left: 15px;  
-    
-                &__links {
-                    > * {
-                        @include text(1.14rem, 1.38rem){
-                            width: auto; 
-                            padding: 15px 35px;
-                        }
-                    }
-                }
-            } 
-        }
-        @include desktop{
-            @include site-padding(0vh);
-        }
+        @include nav;
     }
 }
 
@@ -145,21 +59,22 @@ html {
 
 .hero {
     @include background("../../assets/images/hero.jpg"){
-        height: 60vw;
+        min-height: 60vw;
         color: white;
         position: relative;
     }
+
     &__text {
         @include text(2rem, 3rem);
         position: absolute;
-        padding: 10vw 3vw;
+        @include set-padding(10vw, 3vw);
         top: 50%;
         transform: translateY(-50%);
-        font-family: "AvenirBold";
+        font-family: $primary-font-bold;
     }
 
     @include tablet {
-        height: 100vh;
+        min-height: 100vh;
         &__text {
             @include text(3.5rem, 4.25rem);
         }
@@ -167,36 +82,32 @@ html {
     @include desktop {
         &__text {
             @include text(5rem, 7rem);
-            @include site-padding;
+            @include set-padding;
         }
     }
 }
 
 .overlay {
-    position: absolute;
-    background-color: rgba(0,0,0,0.4);
-    height: 100%;
-    width: 100%;
+    @include overlay;
 }
 
 .main {
-    padding: 10vw 3vw;
+    @include set-padding(10vw, 3vw);
     color: $black;
 
     @include tablet {
-        padding: 3vw 3vw;
+        @include set-padding(3vw, 3vw);
     }
 
     @include desktop{
-        @include site-padding;
+        @include set-padding;
     }
 }
 
 .image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-    
+    @include image{
+        margin-bottom: 15px;
+    }
     @include tablet {
         margin-bottom: 0;   
     }
@@ -207,22 +118,29 @@ html {
         align-content: space-between;
     };
 
-    .image {
+    &__image {
+        @include image;
         filter: grayscale(1);
         margin: 0 15px 15px 0;
 
         &:hover {
             filter: grayscale(0);
             transform: scale(1.1);
-            z-index: 100;
+            z-index: 100; // to put image on top upon hovering
         }
     }
 
     @include tablet {
-        .image {
+        &__image {
             width: 30%;
         }
-    } 
+    }
+    
+    @include desktop {
+        &__image {
+            margin-bottom: 10px;
+        }
+    }
 }
 
 .article {
@@ -245,20 +163,7 @@ html {
 
     @include desktop {
         &__main{
-            padding: 0 5vw;
-        }
-    }
-}
-
-.card {
-    flex: 1 0 33%;
-    &__blurb {
-        > p > span {
-            display: block;
-            
-            @include tablet {
-                display: inline-block;
-            }
+            @include set-padding(0, 5vw);
         }
     }
 }
@@ -273,89 +178,12 @@ html {
         width: 2em;
 
         &:nth-of-type(2){
-            width: calc(2em - 12px);
+            width: calc(2em - 12px); // to compensate for SVG's weird sizing due to whitespace and dimensions
         }
     }
 }
 
 .footer {
-    padding: 5vw 3vw;
-    color: white;
-    background-color: $black;
-    @extend h4;
-
-    &__wrapper {
-        @include flex-container{
-            align-items: baseline;
-            flex-direction: column;
-            position: relative;
-        }
-    }
-
-    &__heading {
-        font-size: 2.5rem;
-    }
-
-    &__contact {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    &__logo {
-        @extend .logo;
-        display: none;
-    }
-
-    @include tablet {
-        &__header,
-        .icon {
-            display: flex;
-        }
-
-        &__header {
-            flex-wrap: wrap;
-        }  
-
-        &__wrapper{
-            flex-direction: row;
-
-            &--outer {
-                @include flex-container;
-                justify-content: space-between;
-                align-items: baseline;
-            }
-        }
-
-        .icon {
-            width: auto;
-            &__item {
-                margin: 0 20px;
-            }
-        }
-
-        &__logo {
-            @media screen and (min-width: 613px) {
-                display: inline-block;
-            }
-
-            @media screen and (min-width: 767px) {
-                display: none;
-            }
-        }
-
-        &__contact {
-            flex-direction: row;
-            flex-wrap:wrap;
-        }
-    }
-    
-    @include desktop{
-        @include site-padding;
-
-        &__logo {
-            display: inline-block;
-        }
-    }
+   @include footer;
 }
 
