@@ -92,16 +92,8 @@ html {
 }
 
 .main {
-    @include set-padding(10vw, 3vw);
-    color: $black;
-
-    @include tablet {
-        @include set-padding(3vw, 3vw);
-    }
-
-    @include desktop{
-        @include set-padding;
-    }
+   width: 100%; 
+   @include set-padding(12vh, 3vw);
 }
 
 .image {
@@ -113,6 +105,11 @@ html {
     }
 }
 
+.gallery-container {
+   @include desktop{
+        @include set-padding;
+   }
+}
 .gallery {
     @include flex-container{
         align-content: space-between;
@@ -144,6 +141,9 @@ html {
 }
 
 .article {
+    color: $black;
+    width: 100%;
+
     &__blurbs {
         @include flex-container {
             > * {
@@ -166,6 +166,10 @@ html {
             @include set-padding(0, 5vw);
         }
     }
+
+    @include tablet {
+        @include set-padding(3vw, 3vw);
+    }
 }
 
 .icon {
@@ -175,10 +179,10 @@ html {
     }
     
     &__item {
-        width: 2em;
+        width: 1.5rem;
 
         &:nth-of-type(2){
-            width: calc(2em - 12px); // to compensate for SVG's weird sizing due to whitespace and dimensions
+            width: calc(2em - 18px); // to compensate for SVG's weird sizing due to whitespace and dimensions
         }
     }
 }

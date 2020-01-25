@@ -52,7 +52,7 @@
 
 }
 
-@mixin set-padding ($y: 3vh, $x: 12vw) {
+@mixin set-padding ($y: 3vh, $x: 10vw) {
     padding: $y $x;
     @content;
 }
