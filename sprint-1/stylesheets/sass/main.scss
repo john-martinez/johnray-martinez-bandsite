@@ -53,6 +53,10 @@ html {
             @include text(0.87rem, 1.38rem);
         }
     }
+
+    @include desktop {
+        font-size: 18px;
+    }
 }
 
 .header {
@@ -331,16 +335,12 @@ html {
         }
 
         &__logo {
-            @media screen and (min-width: 625px) {
+            @media screen and (min-width: 613px) {
                 display: inline-block;
             }
 
             @media screen and (min-width: 767px) {
                 display: none;
-            }
-
-            @media screen and (min-width: 800px) {
-                display: inline-block;
             }
         }
 
@@ -352,6 +352,10 @@ html {
     
     @include desktop{
         @include site-padding;
+
+        &__logo {
+            display: inline-block;
+        }
     }
 }
 
