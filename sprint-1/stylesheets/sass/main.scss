@@ -83,11 +83,20 @@ html {
                         text-align: center;
                         width: 50%;
                         padding: 10px 0;
+
+                        > * {
+                            display: inline-block;
+                            height: 100%;
+                        }
                     }
 
                     &:hover {
-                        color: orange;
                         border-color: orange;
+                        cursor: pointer;
+                        > * {
+                            color: orange;
+                            transform: translateY(-5px); 
+                        }
                     }
                 }
     
@@ -115,7 +124,7 @@ html {
             } 
         }
         @include desktop{
-            @include site-padding;
+            @include site-padding(0vh);
         }
     }
 }
@@ -126,6 +135,7 @@ html {
         text-align: center;
         font-size: 2rem;
         color: white;
+        margin: 0 15px;
     }
 }
 
@@ -188,14 +198,13 @@ html {
     }
 }
 
-.image-container {
+.gallery {
     @include flex-container{
         align-content: space-between;
     };
 
     .image {
         filter: grayscale(1);
-        flex-grow: 1;
         margin: 0 15px 15px 0;
 
         &:hover {
