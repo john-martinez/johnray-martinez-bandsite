@@ -29,7 +29,8 @@
         h2 {
             @include text (1.14rem, 1.5rem);
         }
-        h4,p {
+        h4,
+        p {
             @include text (1rem, 1.5rem);
         }
     }
@@ -60,21 +61,20 @@
     
         &__text {
             @include text(2rem, 3rem);
-            @include set-padding(10vw, 3vw);
+            @include set-padding(0,2%);
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             font-family: $primary-font-bold;
         }
     }
-    
+
     .overlay {
         @include overlay;
     }
     
     .main {
        width: 100%; 
-       @include set-padding(0,2%);
     }
     
     .image {
@@ -84,12 +84,13 @@
     }
     
     .gallery-container {
-        background-color: $light-silver;    
+        background-color: $light-silver;
+        @include set-padding(0, 2%);
     }
     
     .gallery {
         @include flex-container{
-            align-content: space-between;
+            justify-content: center;
         };
     
         &__image {
@@ -97,16 +98,17 @@
             @include zoom-on-hover {
                 filter: grayscale(0);
             }
-    
+
+            flex-grow: 1;
             filter: grayscale(1);
-            margin: 0 15px 15px 0;
-            
+            margin: 0 10px 10px 0;
         }
     }
     
     .article {
         color: $black;
         width: 100%;
+        @include set-padding(0,2%);
     
         &__blurbs {
             @include flex-container {
