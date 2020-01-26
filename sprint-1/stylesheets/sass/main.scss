@@ -1,6 +1,6 @@
-@import '../partials/views/default';
-@import '../partials/views/tablet';
-@import '../partials/views/desktop';
+@import './views/default';
+@import './views/tablet';
+@import './views/desktop';
 
 // please make the changes for each view inside partials/views/<file> 
 // for each specific breakpoint

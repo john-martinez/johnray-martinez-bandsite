@@ -1,6 +1,6 @@
-@import '../fonts';
-@import '../mixins';
-@import '../variables';
+@import '../../partials/fonts';
+@import '../../partials/mixins';
+@import '../../partials/variables';
 
 @mixin default-view {
     * {
