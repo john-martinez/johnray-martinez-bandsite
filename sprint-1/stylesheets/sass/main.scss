@@ -9,7 +9,7 @@
 
 html {
     font-family: $primary-font;
-
+    overflow-x: hidden; 
     body,
     ul {
         @include box-reset;
@@ -48,7 +48,7 @@ html {
 }
 
 .logo {
-    @include link-reset{
+    @include link-reset {
         width: inherit;
         text-align: center;
         font-size: 2rem;
@@ -59,22 +59,21 @@ html {
 
 .hero {
     @include background("../../assets/images/hero.jpg"){
-        min-height: 60vw;
         color: white;
         position: relative;
+        min-height: 70vw;
     }
 
     &__text {
         @include text(2rem, 3rem);
-        position: absolute;
         @include set-padding(10vw, 3vw);
+        position: absolute;
         top: 50%;
         transform: translateY(-50%);
         font-family: $primary-font-bold;
     }
 
     @include tablet {
-        min-height: 100vh;
         &__text {
             @include text(3.5rem, 4.25rem);
         }
@@ -93,6 +92,7 @@ html {
 
 .main {
    width: 100%; 
+   @include set-padding(0, 3vw);
 }
 
 .image {
