@@ -232,15 +232,13 @@
             }
         }
 
-        // &__logo {
-        //     @include custom-breakpoint(650px){display: inline-block};
-        //     @include custom-breakpoint(765px){display: none};
-        //     @include custom-breakpoint(803px){display: inline-block};
-        // }
+        &__logo {
+            @include custom-breakpoint(650px){display: inline-block};
+            // @include custom-breakpoint(765px){display: none};
+            // @include custom-breakpoint(803px){display: inline-block};
+        }
 
-        &__card {
-            flex: 1 0 33%;  
-
+        &__card {  
             &__blurb {
                 &--wrap {
                     display: inline-block;
@@ -256,6 +254,14 @@
     
     @include desktop{
         @include set-padding;
+
+        &__contact {
+            justify-content: flex-start;
+        }
+
+        &__card {
+            margin-right: 2%;
+        }
     }
 }
 
