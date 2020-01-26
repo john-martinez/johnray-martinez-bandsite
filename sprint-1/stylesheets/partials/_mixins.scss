@@ -72,7 +72,7 @@
 
 }
 
-@mixin set-padding ($y: 3vh, $x: 10vw) {
+@mixin set-padding ($y: 3%, $x: 10%) {
     padding: $y $x;
     @content;
 }
@@ -172,7 +172,7 @@
 
 
 @mixin footer {
-    @include set-padding(5vw, 3vw);
+    @include set-padding(5%, 3%);
     color: white;
     background-color: $black;
     @extend h4;

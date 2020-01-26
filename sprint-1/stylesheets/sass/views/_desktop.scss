@@ -12,9 +12,13 @@
             &__text {
                 @include text(5rem, 7rem);
                 @include set-padding;
+                margin: 0;
             }
         }
 
+        .main {
+            padding: 0;
+        }
         .gallery-container {   
             @include set-padding;
         }
