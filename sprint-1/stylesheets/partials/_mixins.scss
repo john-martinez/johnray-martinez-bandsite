@@ -1,5 +1,12 @@
 @import '../partials/variables';
 
+// // AWESOME MIXIN MADE WITH LOVE BY MOI 
+// @mixin set-font($arg: 16px){
+//     $arg: #{$arg/$html-font-size}rem;
+//     font-size: $arg;
+//     @content;
+// }
+
 // RESETS
 @mixin box-reset {
     padding: 0;
