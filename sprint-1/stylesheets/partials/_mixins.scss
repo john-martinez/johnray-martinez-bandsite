@@ -163,6 +163,10 @@
     }
     @include desktop{
         @include set-padding(0vh); 
+
+        &__item {
+            margin-right: 4%;
+        }
     }
 }
 
