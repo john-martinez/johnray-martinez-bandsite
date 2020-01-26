@@ -1,0 +1,28 @@
+@import '../fonts';
+@import '../mixins';
+@import '../variables';
+
+@mixin desktop-view {
+    @include desktop {
+        .hero {
+            &__text {
+                @include text(5rem, 7rem);
+                @include set-padding;
+            }
+        }
+
+        .gallery-container {   
+            @include set-padding;
+        }
+
+        .gallery {    
+            &__image {
+                margin-bottom: 10px;
+            }
+        }
+        
+        .article {
+            @include set-padding;
+        } 
+    }   
+}

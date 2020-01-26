@@ -1,0 +1,39 @@
+@import '../fonts';
+@import '../mixins';
+@import '../variables';
+
+@mixin tablet-view {
+    @include tablet {
+        html { 
+            font-size: 17px;
+            line-height: 130%; 
+        }
+        
+        .hero {
+            &__text {
+                @include text(3.5rem, 4.25rem);
+            }
+        }
+        
+        .image {
+            margin-bottom: 0;   
+        }
+        
+        .gallery {
+            &__image {
+                width: 30%;
+            }
+        }
+        
+        .article {
+            @include set-padding(3vw, 3vw);
+    
+            &__blurbs {
+                > * {
+                    width: 50%;
+                    padding-right: 30px;
+                }
+            }        
+        }     
+    }
+}
