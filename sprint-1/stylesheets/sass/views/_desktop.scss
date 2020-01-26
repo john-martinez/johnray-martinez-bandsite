@@ -33,7 +33,7 @@
             @include set-padding;
 
             &__main {
-                @include set-padding(0, 5%);
+                @include set-padding(0, 10%);
             }
         } 
     }   
