@@ -178,7 +178,14 @@
 
         &__item {
             margin-right: 4%;
+
+            &:nth-of-type(1){
+                @include set-padding(0,0);
+            }
         }
+
+        
+
     }
 }
 

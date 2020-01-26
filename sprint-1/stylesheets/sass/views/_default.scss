@@ -75,6 +75,8 @@
     
     .main {
        width: 100%; 
+       @include set-padding(10%, 0);
+       
     }
     
     .image {
@@ -85,7 +87,7 @@
     
     .gallery-container {
         background-color: $light-silver;
-        @include set-padding(0, 2%);
+        @include set-padding(3%, 2%);
     }
     
     .gallery {
@@ -101,7 +103,7 @@
 
             flex-grow: 1;
             filter: grayscale(1);
-            margin: 0 10px 10px 0;
+            margin: 5px;
         }
     }
     
