@@ -45,6 +45,18 @@
     }
 }
 
+@mixin offset-on-hover($color) {
+    border-color: $orange;
+    cursor: pointer;
+    & {
+        background-color: lighten($color,3%);
+    }
+    > * {
+        color: $orange;
+        transform: translateY(-5px); 
+    }
+}
+
 // SETTERS
 @mixin background ($url){
     background-image: url($url);
@@ -102,7 +114,6 @@
         @include flex-container;
         width: 100%;
         font-size: 1.25rem;
-        margin-top: 10px;
 
         &__links {
             @include list-reset;
@@ -123,12 +134,7 @@
                 }
 
                 &:hover {
-                    border-color: $orange;
-                    cursor: pointer;
-                    > * {
-                        color: $orange;
-                        transform: translateY(-5px); 
-                    }
+                    @include offset-on-hover($black);
                 }
             }
 
