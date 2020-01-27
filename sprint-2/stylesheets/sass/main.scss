@@ -1,0 +1,10 @@
+@import './views/default';
+@import './views/tablet';
+@import './views/desktop';
+
+// please make the changes for each view inside partials/views/<file> 
+// for each specific breakpoint
+
+@include default-view;
+@include tablet-view;
+@include desktop-view;
