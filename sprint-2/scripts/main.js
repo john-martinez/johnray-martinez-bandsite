@@ -34,12 +34,12 @@ var data = [{
     var values = Object.values(item); // fetch all values and put it in an array
     var parent = document.querySelector('.table');
     var row = document.createElement('div');
-    row.classList.add('row');
+    row.classList.add('table__row');
     
     for (var i = 0; i < keys.length; i++){
       var span = document.createElement('span');
       var p = document.createElement('p');
-      span.classList.add('row__header');
+      span.classList.add('table__row__header');
       span.innerText = keys[i];
       p.innerText = values[i];
       row.appendChild(span);
@@ -47,12 +47,14 @@ var data = [{
     }
     
     var button = document.createElement('button');
+    button.classList.add('btn');
     button.innerText = 'Buy Ticket';
     row.appendChild(button);
     parent.appendChild(row);
   }
   
   
+  // MAIN FLOW STARTS HERE
   data.forEach(function (item){
     createRow(item);
 });
