@@ -1,4 +1,4 @@
-var data = [{
+let data = [{
     date: `Mon Dec 17 2018`,
     venue: `Ronald Lane`,
     location: `San Francisco, CA`
@@ -30,15 +30,15 @@ var data = [{
   }];
 
   function createRow(item){
-    var keys = Object.keys(item); // fetch all keys and put it in an array
-    var values = Object.values(item); // fetch all values and put it in an array
-    var parent = document.querySelector('.table');
-    var row = document.createElement('div');
+    let keys = Object.keys(item); // fetch all keys and put it in an array
+    let values = Object.values(item); // fetch all values and put it in an array
+    let parent = document.querySelector('.table');
+    let row = document.createElement('div');
     row.classList.add('table__row');
     
-    for (var i = 0; i < keys.length; i++){
-      var span = document.createElement('span');
-      var p = document.createElement('p');
+    for (let i = 0; i < keys.length; i++){
+      let span = document.createElement('span');
+      let p = document.createElement('p');
       span.classList.add('table__row__header');
       span.innerText = keys[i];
       p.innerText = values[i];
@@ -46,7 +46,7 @@ var data = [{
       row.appendChild(p);
     }
     
-    var button = document.createElement('button');
+    let button = document.createElement('button');
     button.classList.add('btn');
     button.innerText = 'Buy Ticket';
     row.appendChild(button);
