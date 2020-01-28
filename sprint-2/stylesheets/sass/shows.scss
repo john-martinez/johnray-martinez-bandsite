@@ -1,14 +1,8 @@
 @import '../partials/variables';
+@import '../partials/mixins';
 
 .btn {
-    background-color: $black;
-    color: $white;
-    outline: none;
-    border-radius: 7px;
-    border: none;
-    text-transform: uppercase;
-    padding: 20px;
-    font-size: 1.1rem;
+    @include button;
 }
 
 .table {
