@@ -17,32 +17,38 @@
     picture: ''
   }];
 
-    // EVENT LISTENER
+// EVENT LISTENER when clicking submit button
 let submitBtn = document.querySelector('#submit-btn');
 submitBtn.addEventListener('click', function(event){
-
-  // remove existing comments
-  const toRemove = document.querySelectorAll('.comment');
-  toRemove.forEach(function(item){
-      item.parentNode.removeChild(item);
-  });
-    
+  clearComments(); // clears all existing comments
   let today = new Date();
   event.preventDefault();
-  let name = document.querySelector('#name').value;
-  let comment = document.querySelector('#comment').value;
+  let name = document.querySelector('#name');
+  let comment = document.querySelector('#comment');
   comments.unshift({
-    name: name,
-    comment: comment,
+    name: name.value,
+    comment: comment.value,
     timeStamp: `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`,
     picture: ''
   })
 
-  name = "";
-  comment = "";
+  name.value = "";
+  comment.value = "";
   generateComments(comments);
 });
   
+function clearComments (){
+   // remove existing comments
+   const toRemove = document.querySelectorAll('.comment');
+   
+   // CHECKER to see if toRemove nodelist is not empty
+   if (toRemove.length > 0) { 
+    toRemove.forEach(function(item){
+      item.parentNode.removeChild(item);
+    });
+   }  
+}
+
 function generateComments (comments) {
     comments.forEach(function(item){
         let parent = document.querySelector('.comment-container');
