@@ -1,52 +1,9 @@
 @import '../partials/variables';
 @import '../partials/mixins';
+@import './views/shows/default';
+@import './views/shows/tablet';
 
-.btn {
-    @include button;
-}
-
-.table {
-    &__row{
-        display: flex;
-        flex-direction: column;
-        border-bottom: 1px solid gray;
-        padding: 25px 0;
-        justify-content: space-between;
-    
-        &__header {
-            color: gray;
-            text-transform: uppercase;
-    
-            & + p:nth-of-type(1){
-                font-weight: bold;
-            }
-        }
-    
-        &--hide {
-            display: none;
-        }
-    }  
-}
-  
-@media screen and (min-width: 478px){
-    .table {
-        &__row {
-            flex-direction: row;
-      
-            > * {
-              width: 100%;
-              flex: 1 0 25%;
-            }
-      
-            &__header{
-              display: none;
-            }
-      
-            &--hide {
-                display: flex;
-            }
-        } 
-    }
-}
+@include default-view;
+@include tablet-view;
   
   

@@ -8,14 +8,6 @@
             font-size: 16px;
         }
 
-        .hero {
-            &__text {
-                @include text(5rem, 7rem);
-                @include set-padding;
-                margin: 0;
-            }
-        }
-
         .main {
             padding: 0;
         }

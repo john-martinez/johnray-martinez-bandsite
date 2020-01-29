@@ -9,30 +9,7 @@
     }
     
     html {
-        font-family: $primary-font;
-        overflow-x: hidden; 
-        body,
-        ul {
-            @include box-reset;
-        }
-        
-        a{
-            @include link-reset;
-            color: $white;
-        }
-    
-        h1,
-        h2 {
-            @include text (2rem, 2rem);
-            font-family: $primary-font-bold;
-        }
-        h2 {
-            @include text (1.14rem, 1.5rem);
-        }
-        h4,
-        p {
-            @include text (1rem, 1.5rem);
-        }
+        @include html;
     }
     
     .header {
@@ -44,29 +21,13 @@
     }
     
     .logo {
-        @include link-reset {
-            width: inherit;
-            text-align: center;
-            font-size: 2rem;
-            color: white;
-        }
+        @include link-reset;
+        @include logo;
     }
     
     .hero {
-        @include background("../../assets/images/hero.jpg"){
-            color: white;
-            position: relative;
-            min-height: 70vw;
-        }
-    
-        &__text {
-            @include text(2rem, 3rem);
-            @include set-padding(0,2%);
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: $primary-font-bold;
-        }
+        @include background("../../assets/images/hero.jpg");
+        @include hero;        
     }
 
     .overlay {

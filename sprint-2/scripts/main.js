@@ -28,13 +28,13 @@ submitBtn.addEventListener('click', function(event){
   comments.unshift({
     name: name.value,
     comment: comment.value,
-    timeStamp: `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`,
+    timeStamp: `${today.getMonth()+1}/${today.getDate()}/${today.getFullYear()}`,
     picture: ''
   })
 
   name.value = "";
   comment.value = "";
-  generateComments(comments);
+  displayComments(comments);
 });
   
 function clearComments (){
@@ -49,7 +49,7 @@ function clearComments (){
    }  
 }
 
-function generateComments (comments) {
+function displayComments (comments) {
     comments.forEach(function(item){
         let parent = document.querySelector('.comment-container');
         // left side of comment 
@@ -88,4 +88,4 @@ function generateComments (comments) {
 }
 
 // main flow starts here
-generateComments(comments);
+displayComments(comments);

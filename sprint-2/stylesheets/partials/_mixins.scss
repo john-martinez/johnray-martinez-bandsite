@@ -24,6 +24,32 @@
     @content;
 }
 
+// BREAKPOINTS
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint){
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint){
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media screen and (min-width: $large-desktop-breakpoint){
+        @content;
+    }
+}
+
+@mixin custom-breakpoint ($min-width){
+    @media screen and (min-width: $min-width){
+        @content;
+    }
+}
+
+
 // FLEXBOX RELATED
 @mixin flex-container {
     display: flex;
@@ -76,7 +102,33 @@
     font-size: $size;
     line-height: $line-height;
     @content;
+}
 
+@mixin html {
+    font-family: $primary-font;
+    overflow-x: hidden; 
+    body,
+    ul {
+        @include box-reset;
+    }
+    
+    a {
+        @include link-reset;
+        color: $white;
+    }
+
+    h1,
+    h2 {
+        @include text (2rem, 2rem);
+        font-family: $primary-font-bold;
+    }
+    h2 {
+        @include text (1.14rem, 1.5rem);
+    }
+    h4,
+    p {
+        @include text (1rem, 1.5rem);
+    }
 }
 
 @mixin set-padding ($y: 3%, $x: 10%) {
@@ -84,30 +136,7 @@
     @content;
 }
 
-// BREAKPOINTS
-@mixin tablet {
-    @media screen and (min-width: $tablet-breakpoint){
-        @content;
-    }
-}
 
-@mixin desktop {
-    @media screen and (min-width: $desktop-breakpoint){
-        @content;
-    }
-}
-
-@mixin large-desktop {
-    @media screen and (min-width: $large-desktop-breakpoint){
-        @content;
-    }
-}
-
-@mixin custom-breakpoint ($min-width){
-    @media screen and (min-width: $min-width){
-        @content;
-    }
-}
 
 // REUSABLE COMPONENTS 
 @mixin nav {
@@ -310,4 +339,44 @@
     padding: 20px;
     font-size: 1.1rem;
     @content;
+}
+
+@mixin logo {
+    width: inherit;
+    text-align: center;
+    font-size: 2rem;
+    color: $white;
+    @content;
+}
+
+@mixin hero {
+    color: $white;
+    min-height: 70vw;
+    position: relative;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+
+    &__text {
+        @include text(2rem, 3rem);
+        @include set-padding(0,2%);
+        font-family: $primary-font-bold;
+        z-index: 5;
+    }
+
+    @include tablet {
+        min-height: 100vh;
+
+        &__text {
+            @include text(3.5rem, 4.25rem);
+        }
+    }
+
+    @include desktop {
+        &__text {
+            @include text(5rem, 7rem);
+            @include set-padding;
+            margin: 0;
+        }
+    }
 }
