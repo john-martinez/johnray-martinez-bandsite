@@ -1,60 +1,85 @@
-let data = [{
-    date: `Mon Dec 17 2018`,
-    venue: `Ronald Lane`,
-    location: `San Francisco, CA`
+  const comments = [{
+    name: 'Michael Lyons',
+    timeStamp: '12/18/2018',
+    comment:'They BLEW the ROOF off at their last show, once everyone started figuring out they were going. This is still simply the greatest opening of a concert I have EVER witnessed.',
+    picture: ''
+  }, 
+  {
+    name: 'Gary Wong',
+    timeStamp: '12/12/2018',
+    comment: 'Every time I see him shred I feel so motivated to get off my couch and hop on my board. He’s so talented! I wish I can ride like him one day so I can really enjoy myself!',
+    picture: ''
   },
   {
-    date: `Tue Jul 18 2019`,
-    venue: `Pier 3 East`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Fri Jul 22 2019`,
-    venue: `View Loungue`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Sat Aug 12 2019`,
-    venue: `Hyatt Agency`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Fri Sep 05 2019`,
-    venue: `Moscow Center`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Wed Aug 11 2019`,
-    venue: `Pres Club`,
-    location: `San Francisco, CA`  
+    name: 'Theodore Duncan',
+    timeStamp: '11/15/2018',
+    comment: 'How can someone be so good!!! You can tell he lives for this and loves to do it every day. Everytime I see him I feel instantly happy! He’s definitely my favorite ever!',
+    picture: ''
   }];
 
-  function createRow(item){
-    let keys = Object.keys(item); // fetch all keys and put it in an array
-    let values = Object.values(item); // fetch all values and put it in an array
-    let parent = document.querySelector('.table');
-    let row = document.createElement('div');
-    row.classList.add('table__row');
+    // EVENT LISTENER
+let submitBtn = document.querySelector('#submit-btn');
+submitBtn.addEventListener('click', function(event){
+
+  // remove existing comments
+  const toRemove = document.querySelectorAll('.comment');
+  toRemove.forEach(function(item){
+      item.parentNode.removeChild(item);
+  });
     
-    for (let i = 0; i < keys.length; i++){
-      let span = document.createElement('span');
-      let p = document.createElement('p');
-      span.classList.add('table__row__header');
-      span.innerText = keys[i];
-      p.innerText = values[i];
-      row.appendChild(span);
-      row.appendChild(p);
-    }
-    
-    let button = document.createElement('button');
-    button.classList.add('btn');
-    button.innerText = 'Buy Ticket';
-    row.appendChild(button);
-    parent.appendChild(row);
-  }
-  
-  
-  // MAIN FLOW STARTS HERE
-  data.forEach(function (item){
-    createRow(item);
+  let today = new Date();
+  event.preventDefault();
+  let name = document.querySelector('#name').value;
+  let comment = document.querySelector('#comment').value;
+  comments.unshift({
+    name: name,
+    comment: comment,
+    timeStamp: `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`,
+    picture: ''
+  })
+
+  name = "";
+  comment = "";
+  generateComments(comments);
 });
+  
+function generateComments (comments) {
+    comments.forEach(function(item){
+        let parent = document.querySelector('.comment-container');
+        // left side of comment 
+        let comment = document.createElement('div');
+        comment.classList.add('comment');
+        let commentLeft = document.createElement('div');
+        commentLeft.classList.add('comment__left');
+        let commentImage = document.createElement('div');
+        commentImage.classList.add('comment__image');
+        commentLeft.appendChild(commentImage);
+        comment.appendChild(commentLeft);
+        
+        // right side of comment
+        let commentRight = document.createElement('div');
+        commentRight.classList.add('comment__right');
+        let commentHeader = document.createElement('div');
+        commentHeader.classList.add('comment__header');
+        let commentAuthor = document.createElement('span');
+        commentAuthor.classList.add('comment__author');
+        commentAuthor.innerText =  item.name;
+        commentHeader.appendChild(commentAuthor);
+        let commentTimeStamp = document.createElement('span');
+        commentTimeStamp.classList.add('comment__time-stamp');
+        commentTimeStamp.innerText = item.timeStamp;
+        commentHeader.appendChild(commentTimeStamp);
+        commentRight.appendChild(commentHeader);
+        let commentBlurb = document.createElement('div');
+        commentBlurb.classList.add('comment__blurb');
+        let blurb = document.createElement('p');
+        blurb.innerText = item.comment;
+        commentBlurb.appendChild(blurb);
+        commentRight.appendChild(commentBlurb);
+        comment.appendChild(commentRight);
+        parent.appendChild(comment);
+    });
+}
+
+// main flow starts here
+generateComments(comments);

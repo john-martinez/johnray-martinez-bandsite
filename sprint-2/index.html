@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="stylesheets/css/main.min.css">
+    <link rel="stylesheet" href="stylesheets/css/shows.min.css">
     <title>Bandsite</title>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
             <div class="nav__item"> 
-                <a href="index.html" class="logo"><img src="./assets/Logo/Logo-bandsite.svg" alt=""></a>
+                <a href="./index.html" class="logo"><img src="./assets/Logo/Logo-bandsite.svg" alt=""></a>
             </div>
             <div class="nav__item"> 
                 <ul class="nav__item__links">
@@ -19,7 +20,7 @@
                         <a href="" class="">Biography</a>
                     </li>
                     <li>
-                        <a href="">Shows</a>
+                        <a href="./pages/shows.html">Shows</a>
                     </li>
                 </ul>
             </div>
@@ -91,19 +92,26 @@
                     <div class="form__right form__section">
                         <div class="form__field">
                             <label class="form__label" for="name">Name</label>
-                            <input type="text" placeholder="Enter your name" class="form__input">
+                            <input id="name" type="text" placeholder="Enter your name" class="form__input">
                         </div>
                         <div class="form__field">
                             <label class="form__label" for="comment">Comment</label>
-                            <textarea class="form__input text-area" name="" id="" noresize></textarea>
+                            <textarea id="comment" class="form__input text-area" name="" id="" noresize></textarea>
                         </div>
                         <div class="form__field">
-                            <button class="form__input btn">COMMENT</button>
+                            <button id="submit-btn" class=" btn">COMMENT</button>
                         </div>
                     </div> 
                 </form>
-
             </div>          
+        </article>
+
+        <article class="article"> 
+            <div class="article__main">
+                <div class="comment-container">
+                    <!-- COMMENTS GO HERE -->
+                </div>
+            </div>
         </article>
     </main>
     <footer class="footer">
@@ -166,5 +174,6 @@
             <p>Copyright The Bees Knees © 2018 <span class="footer__card__blurb--wrap"> All Rights Reserved </span></p>
         </div>
     </footer>
+    <script src="./scripts/main.js"></script>
 </body>
 </html>
