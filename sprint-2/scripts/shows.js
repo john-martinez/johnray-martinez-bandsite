@@ -40,7 +40,7 @@ let data = [{
     for (let i = 0; i < keys.length; i++){
       let p1 = document.createElement('p'); // table header
       let p2 = document.createElement('p'); // table data
-      p1.classList.add('table__row__header');
+      p1.classList.add('table__header');
       p1.innerText = keys[i];
       p2.innerText = values[i];
       row.appendChild(p1);

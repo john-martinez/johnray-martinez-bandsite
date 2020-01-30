@@ -1,9 +1,58 @@
+@import '../partials/fonts';
 @import '../partials/variables';
 @import '../partials/mixins';
-@import './views/shows/default';
-@import './views/shows/tablet';
 
-@include default-view;
-@include tablet-view;
-  
-  
+// COMMON COMPONENTS IN ALL PAGES
+* {
+    box-sizing: border-box;
+    transition: .3s ease-out;
+}
+
+@include html-preset;
+@include header;
+@include nav;
+@include article;
+@include overlay;
+@include icon;
+@include footer-preset;
+@include main;
+@include btn;
+@include hero { @include background("../../assets/images/hero.jpg") }
+@include logo{ @include link-reset }
+// END OF COMMON ELEMENTS
+
+
+.table {
+    &__header {
+        color: gray;
+        text-transform: uppercase;
+
+        & + p:nth-of-type(1){ font-weight: bold }
+    }
+
+    &__row{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid $dark-silver;
+        padding: 25px 0;
+        justify-content: space-between;
+    
+        &--hide { display: none }
+        
+    }  
+    @include tablet{
+        &__header { display: none }
+        
+        &__row {
+            flex-direction: row;
+            &--hide { display: flex  }
+        
+            > * {
+                width: 100%;
+                flex: 1 0 25%;
+            }
+        } 
+    }
+}
+
+
