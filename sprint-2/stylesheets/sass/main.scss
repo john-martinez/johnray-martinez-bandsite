@@ -76,7 +76,7 @@
         padding: 10px;
         width: 100%;
 
-        > * { padding: 5px }
+        > *:not(.btn) { padding: 5px }
     }
 
     &__input {
