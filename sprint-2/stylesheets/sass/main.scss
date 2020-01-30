@@ -1,10 +1,248 @@
-@import './views/biography/default';
-@import './views/biography/tablet';
-@import './views/biography/desktop';
+@import '../partials/fonts';
+@import '../partials/variables';
+@import '../partials/mixins';
 
-// please make the changes for each view inside partials/views/<file> 
-// for each specific breakpoint
+* {
+    box-sizing: border-box;
+    transition: .3s ease-out;
+}
 
-@include default-view;
-@include tablet-view;
-@include desktop-view;
+html {
+    @include html;
+
+    @include tablet {
+        font-size: 17px;
+        line-height: 130%;  
+    }
+
+    @include desktop {
+        font-size: 16px;
+    }
+}
+
+.header {
+    background-color: $black;
+    
+    .nav {
+        @include nav;
+    }
+
+    @include tablet {
+        position: absolute;
+        width: 100%;
+        top:0;
+        left:0;
+        z-index: 99; //to put nav in front at all times
+    }
+}
+
+.logo {
+    @include link-reset;
+    @include logo;
+}
+
+.hero {
+    @include background('../../assets/Images/hero.jpg');
+    @include hero;        
+}
+
+.overlay {
+    @include overlay;
+}
+
+.main {
+    width: 100%; 
+    @include set-padding(10%, 0);
+
+    @include desktop {
+        padding: 0;
+    }
+}
+
+.image {
+    @include image{
+        margin-bottom: 15px;
+    }
+
+    @include tablet {
+        margin-bottom: 0; 
+    }
+}
+
+.gallery-container {
+    background-color: $light-silver;
+    @include set-padding(3%, 2%);
+
+    @include desktop {
+        @include set-padding;
+    }
+}
+
+.gallery {
+    @include flex-container{
+        justify-content: center;
+    }
+
+    &__image {
+        @include image;
+        @include zoom-on-hover {
+            filter: grayscale(0);
+        }
+        flex-grow: 1;
+        filter: grayscale(1);
+        margin: 5px;
+
+        @include tablet {
+            width: 30%;
+        }
+
+        @include desktop {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.article {
+    color: $black;
+    width: 100%;
+    @include set-padding(0,2%);
+
+    &__blurbs {
+        @include flex-container {
+            > * {
+                margin-bottom: 10px;
+
+                @include tablet {
+                    width: 50%;
+                    padding-right: 30px; 
+                }
+            }
+        }
+    }
+
+    &__main {
+        @include desktop {
+            @include set-padding(0, 10%);
+        }    
+    }
+    
+    @include tablet {
+        @include set-padding(3%, 3%);
+    }
+
+    @include desktop {
+        @include set-padding;
+    }
+}
+
+.icon {
+    @include flex-container{
+        justify-content: space-between;
+        width: 50vw;
+    }
+    
+    &__item {
+        width: 1.5rem;
+
+        &:nth-of-type(2){
+            width: calc(2em - 18px); // to compensate for SVG's weird sizing due to whitespace and dimensions
+        }
+    }
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    padding: 10% 0;
+    border-bottom: 1px solid lightgray;
+
+    &__picture {
+        margin-top: 35px;
+        width: 55px;
+        height: 55px;
+        background: url('../../assets/Images/guy.jpg');
+        background-size: cover;
+        background-position: center;
+        border-radius: 100px;
+    }
+
+    &__label {
+        display: block;
+    }
+
+    &__section {
+        width: 100%;
+    }
+    
+    &__field {
+        padding: 10px;
+        width: 100%;
+    }
+
+    &__label {
+        text-transform: uppercase;
+    }
+    &__field {
+        > * {
+            padding: 5px;
+        }
+    }
+    &__input {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+        resize: none;
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        background-color: #FAFAFA;
+        
+        &:focus {
+            border: 2px solid black;
+            outline: none;
+            }
+    }
+}
+
+.btn {
+    @include button{
+        width: 100%;
+    };
+}
+.text-area {
+    height: 200px;
+}
+
+
+.comment {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 2px solid lightgray;
+
+    &__left {
+        padding: 0 15px;
+        }
+
+    &__right {
+        width: 100%;
+    }
+    
+    &__image {
+        width: 50px;
+        height: 50px;
+        background-color: $silver;
+        border-radius: 100px;
+    }
+
+    &__author {
+        font-weight: bold;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+    
+.footer {
+    @include footer;
+}    
