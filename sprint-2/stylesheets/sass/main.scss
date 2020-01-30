@@ -16,9 +16,12 @@
 @include icon;
 @include footer-preset;
 @include main;
-@include btn { width: 100%; }
 @include hero { @include background('../../assets/Images/hero.jpg')}
 @include logo { @include link-reset }
+@include btn { 
+    width: 100%;
+    @include tablet { width: auto; @include set-padding(20px,75px)  } 
+}
 
 // END OF COMMON ELEMENTS
 
@@ -91,6 +94,12 @@
         &:focus {
             border: 2px solid black;
             outline: none;
+        }
+    }
+
+    @include tablet {
+        &__field:last-of-type {
+            text-align: right;
         }
     }
 }
