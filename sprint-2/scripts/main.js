@@ -37,16 +37,10 @@ submitBtn.addEventListener('click', function(event){
   displayComments(comments);
 });
   
-function clearComments (){
+const clearComments = () => {
    // remove existing comments
-   const toRemove = document.querySelectorAll('.comment');
-   
-   // CHECKER to see if toRemove nodelist is not empty
-   if (toRemove.length > 0) { 
-    toRemove.forEach(function(item){
-      item.parentNode.removeChild(item);
-    });
-   }  
+   const commentsContainer = document.querySelector('.comments-container');
+   commentsContainer.innerHTML = "";
 }
 
 function displayComments (comments) {
