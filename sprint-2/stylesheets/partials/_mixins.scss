@@ -124,33 +124,22 @@
             line-height: 130%;  
         }
     
-        @include desktop {
-            font-size: 16px;
-        } 
+        @include desktop { font-size: 16px } 
     }
     
     body,
-    ul {
-        @include box-reset;
-    }
-    
-    a {
-        @include link-reset;
-        color: $white;
-    }
-
-    h1,
-    h2 {
-        @include text (2rem, 2rem);
+    ul { @include box-reset }
+    a { @include link-reset; color: $white }
+    h1 {
         font-family: $primary-font-bold;
+        @include text (3rem, 3.5rem);
+        @include tablet { @include text(4rem, 4.5rem)}
+        @include desktop { @include text(3rem, 3.5rem)}
     }
-    h2 {
-        @include text (1.14rem, 1.5rem);
-    }
-    h4,
-    p {
-        @include text (1rem, 1.5rem);
-    }
+    h2,
+    h4 { @include text (1.14rem, 1.5rem) }
+    h4 { margin: 0 }
+    p { @include text (1rem, 1.5rem) }
 }
 
 @mixin nav {
@@ -392,27 +381,28 @@
         flex-direction: column;
         justify-content: center;
         @content;
-    
+
         &__text {
-            @include text(2rem, 3rem);
-            @include set-padding(0,2%);
             font-family: $primary-font-bold;
             z-index: 5;
+            @include text(2rem, 3rem);
+            @include set-padding(10%, 0 );
+            & > * { @include set-padding(0,2%) }
+            & > h4 { @include tablet { @include text(1.5rem, 2rem) } }
         }
     
         @include tablet {
             min-height: 100vh;
-    
-            &__text {
-                @include text(3.5rem, 4.25rem);
-            }
+            &__text { @include text(3.5rem, 4.25rem) }
         }
     
         @include desktop {
             &__text {
                 @include text(5rem, 7rem);
-                @include set-padding;
                 margin: 0;
+
+                &--flexed { display: flex; align-items: flex-end } 
+                & > * { @include set-padding(0, 10%) }
             }
         }
     }  
