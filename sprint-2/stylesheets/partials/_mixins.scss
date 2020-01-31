@@ -192,14 +192,13 @@
             width: 100%;
             &__item {
                 width: auto;
-                align-items: center;  
-                // margin-left: 15px;  
+                align-items: center;   
     
                 &__links {
                     > * {
                         @include text(1.14rem, 1.38rem){
                             width: auto; 
-                            @include set-padding(15px, 35px);
+                            & > * {@include set-padding(15px, 35px) }
                         }
                     }
                 }
@@ -256,6 +255,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            padding-top: 15px;
         }
     
         &__logo {

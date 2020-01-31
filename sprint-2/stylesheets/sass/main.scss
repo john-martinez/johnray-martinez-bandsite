@@ -19,7 +19,7 @@
 @include logo { @include link-reset }
 @include hero { 
     @include background('../../assets/Images/hero.jpg');
-    &__text > h1 {@include desktop { @include text(5rem,5.5rem) } }
+    &__text > h1 {@include desktop { @include text(5rem,6rem) } }
 }
 
 @include btn { 
