@@ -136,9 +136,8 @@
         @include tablet { @include text(4rem, 4.5rem)}
         @include desktop { @include text(3rem, 3.5rem)}
     }
-    h2,
-    h4 { @include text (1.14rem, 1.5rem) }
-    h4 { margin: 0 }
+    h2 { @include text (2rem, 2.5rem) }
+    h4 { @include text (1.14rem, 1.5rem); margin: 0 }
     p { @include text (1rem, 1.5rem) }
 }
 

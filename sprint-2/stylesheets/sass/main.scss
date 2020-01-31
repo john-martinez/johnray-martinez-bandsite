@@ -16,8 +16,12 @@
 @include icon;
 @include footer-preset;
 @include main;
-@include hero { @include background('../../assets/Images/hero.jpg')}
 @include logo { @include link-reset }
+@include hero { 
+    @include background('../../assets/Images/hero.jpg');
+    &__text > h1 {@include desktop { @include text(5rem,5.5rem) } }
+}
+
 @include btn { 
     width: 100%;
     @include tablet { width: auto; @include set-padding(20px,75px)  } 
