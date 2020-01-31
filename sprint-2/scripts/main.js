@@ -44,8 +44,10 @@ const clearComments = () => {
 }
 
 function displayComments (comments) {
+  let targetDiv = document.querySelector('.comments-container');
+  let parent = document.createElement('div');
+  parent.classList.add('comments');
     comments.forEach(function(item){
-        let parent = document.querySelector('.comment-container');
         // left side of comment 
         let comment = document.createElement('div');
         comment.classList.add('comment');
@@ -79,6 +81,7 @@ function displayComments (comments) {
         comment.appendChild(commentRight);
         parent.appendChild(comment);
     });
+    targetDiv.appendChild(parent);
 }
 
 // main flow starts here
