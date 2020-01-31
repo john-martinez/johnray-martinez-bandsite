@@ -20,7 +20,6 @@
 // EVENT LISTENER when clicking submit button
 let submitBtn = document.querySelector('#submit-btn');
 submitBtn.addEventListener('click', function(event){
-  clearComments(); // clears all existing comments
   let today = new Date();
   event.preventDefault();
   let name = document.querySelector('#name');
@@ -34,6 +33,7 @@ submitBtn.addEventListener('click', function(event){
 
   name.value = "";
   comment.value = "";
+  clearComments(); // clears all existing comments
   displayComments(comments);
 });
   

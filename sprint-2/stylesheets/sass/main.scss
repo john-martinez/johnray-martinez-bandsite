@@ -73,6 +73,8 @@
     &__label { 
         display: block;
         text-transform: uppercase; 
+        font-weight: 600;
+        color: $dark-silver;
     }
 
     &__field {
@@ -88,6 +90,7 @@
         border-radius: 5px;
         border: 1px solid lightgray;
         background-color: #FAFAFA;
+        font-family: "Avenir";
         
         &:focus {
             border: 2px solid black;
@@ -102,7 +105,7 @@
     }
 }
 
-.article__main.comment-section { @include set-padding(0, 15%) }
+.article__main.comment-section { @include desktop  {@include set-padding(0, 15%) } }
 
 .comment {
     display: flex;
@@ -113,13 +116,14 @@
     &__right { width: 100% }
     &__author { font-weight: bold }
     &__time-stamp { margin-left: 5px }
-    &__header { display: flex }
+    &__header { display: flex; justify-content: space-between; }
     &__image {
         width: 50px;
         height: 50px;
         background-color: $silver;
         border-radius: 100px;
     }   
+    @include tablet { &__header { justify-content: flex-start } }
 }
     
 
