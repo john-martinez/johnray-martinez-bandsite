@@ -234,7 +234,7 @@
 @mixin main {
     .main {
         width: 100%; 
-        @include set-padding(10%, 0);
+        // @include set-padding(10%, 0);
     
         @include desktop {
             padding: 0;
@@ -461,7 +461,7 @@
         }
 
         @include desktop {
-            padding: 0 10% 0 10%;
+            @include set-padding(0, 10%);
 
             &__main {
                 @include set-padding(0, 10%);
