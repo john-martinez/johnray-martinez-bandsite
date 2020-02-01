@@ -78,12 +78,11 @@
     }
 }
 
-@mixin offset-on-hover($color: $orange) {
+@mixin offset-on-hover($color: $orange, $bgcolor: $black) {
     border-color: $color;
     cursor: pointer;
-    & {
-        background-color: lighten($color,3%);
-    }
+    background-color: lighten($bgcolor,3%);
+
     > * {
         color: $orange;
         transform: translateY(-5px); 
@@ -176,7 +175,7 @@
                     }
     
                     &:hover {
-                        @include offset-on-hover($black);
+                        @include offset-on-hover;
                     }
                 }
     
