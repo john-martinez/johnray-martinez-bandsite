@@ -11,14 +11,20 @@
 @include html-preset;
 @include header;
 @include nav;
-@include article;
 @include overlay;
 @include icon;
 @include footer-preset;
 @include main;
-@include btn;
+@include btn { @include tablet { max-width: 200px } };
 @include hero { @include background("../../assets/images/hero2.jpg") }
 @include logo{ @include link-reset }
+@include article { 
+    @include desktop { 
+        display: flex; 
+        justify-content: space-between; 
+        &__main { padding: 0 !important; width: 80%; } 
+    } 
+}
 // END OF COMMON ELEMENTS
 
 

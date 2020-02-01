@@ -69,7 +69,7 @@ window.onload = () => main();
     { unit: 'hr',   divider: 24 },
     { unit: 'day',    divider: 7  },
     { unit: 'wk',   divider: 4  },
-    { unit: 'mon',  divider: 12  }];
+    { unit: 'mo',  divider: 12  }];
     let toConvert = new Date(timestamp);
     let rightNow = new Date(Date.now());
     let res = rightNow - toConvert; // get the difference of the two dates in milliseconds
@@ -91,7 +91,7 @@ window.onload = () => main();
         }
         else  {
           // cycle through the time array and divide res by time[i].divider
-          if (res < time[i].divider) return `${Math.round(res)} ${time[i].unit}${res!= 1?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
+          if (res < time[i].divider) return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
           else res /= time[i].divider;
         }
       }

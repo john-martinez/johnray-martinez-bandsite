@@ -78,8 +78,8 @@
     }
 }
 
-@mixin offset-on-hover($color) {
-    border-color: $orange;
+@mixin offset-on-hover($color: $orange) {
+    border-color: $color;
     cursor: pointer;
     & {
         background-color: lighten($color,3%);
@@ -130,13 +130,13 @@
     body,
     ul { @include box-reset }
     a { @include link-reset; color: $white }
+    h1,h2,h3,h5,h6 { font-family: $primary-font-bold; }
     h1 {
-        font-family: $primary-font-bold;
         @include text (3rem, 3.5rem);
         @include tablet { @include text(4rem, 4.5rem)}
         @include desktop { @include text(3rem, 3.5rem)}
     }
-    h2 { @include text (2rem, 2.5rem) }
+    h2 { @include text (2rem, 2.5rem); font-weight: 600; }
     h4 { @include text (1.14rem, 1.5rem); margin: 0 }
     p { @include text (1rem, 1.5rem) }
 }
@@ -357,8 +357,9 @@
         text-transform: uppercase;
         padding: 20px;
         font-size: 1.1rem;
+        &:hover { @include offset-on-hover }
         @content;
-    }
+    }  
 }
 
 @mixin logo {
@@ -391,7 +392,6 @@
         }
     
         @include tablet {
-            min-height: 100vh;
             &__text { @include text(3.5rem, 4.25rem) }
         }
     
@@ -435,6 +435,7 @@
         color: $black;
         width: 100%;
         @include set-padding(0,2%);
+        @content;
     
         &__blurbs {
             @include flex-container {

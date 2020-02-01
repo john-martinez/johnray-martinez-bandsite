@@ -24,12 +24,12 @@
 
 @include btn { 
     width: 100%;
-    @include tablet { width: auto; @include set-padding(20px,75px)  } 
+    @include tablet { width: auto; @include set-padding(20px,50px)  } 
 }
 
 // END OF COMMON ELEMENTS
 
-.text-area { height: 200px }
+.text-area { height: 100px }
 
 .image {
     @include image{ margin-bottom: 15px }
@@ -92,33 +92,31 @@
         font-size: 1.1rem;
         resize: none;
         border-radius: 5px;
-        border: 1px solid lightgray;
-        background-color: #FAFAFA;
-        font-family: "Avenir";
+        border: 1px solid $silver;
+        background-color: $light-silver;
+        font-family: $primary-font;
         
         &:focus {
             border: 2px solid black;
             outline: none;
         }
     }
-
-    @include tablet {
-        &__field:last-of-type {
-            text-align: right;
-        }
-    }
+    @include tablet { &__field:last-of-type { text-align: right } }
 }
 
-.article__main.comment-section { @include desktop  { @include set-padding(0, 15%) } }
+.article__main.comment-section { 
+    @include tablet  { @include set-padding(0, 10%) } 
+    @include desktop { @include set-padding(0, 15%) }
+}
 
 .comment {
     display: flex;
     padding: 10px 0;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 2px solid $silver;
 
     &__left { padding: 0 15px }
     &__right { width: 100% }
-    &__author { font-weight: bold }
+    &__author { font-family: $primary-font-bold }
     &__time-stamp { margin-left: 5px }
     &__header { display: flex; justify-content: space-between; }
     &__image {
