@@ -1,3 +1,4 @@
+window.onload = () => main();  
 let data = [{
     date: `Mon Dec 17 2018`,
     venue: `Ronald Lane`,
@@ -30,7 +31,7 @@ let data = [{
   }];
 
 
-  function createTable(data){
+  const createTable = data => {
     let targetDiv = document.querySelector('.rows-container');
     let parent = document.createElement('div');
     data.forEach(item=>{
@@ -59,4 +60,4 @@ let data = [{
   }
   
   // MAIN FLOW STARTS HERE
-  window.onload = () => createTable(data);
+  const main = () => createTable(data);
