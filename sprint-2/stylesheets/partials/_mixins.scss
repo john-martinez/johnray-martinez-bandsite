@@ -334,7 +334,7 @@
     // SET PARENT ELEMENT TO POSITION RELATIVE BEFORE USING THIS MIXIN
     .overlay {
         position: absolute;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0,0,0,0.5);
         height: 100%;
         width: 100%;
         @content;
@@ -399,9 +399,15 @@
             &__text {
                 @include text(5rem, 7rem);
                 margin: 0;
-
-                &--flexed { display: flex; align-items: flex-end } 
+                
                 & > * { @include set-padding(0, 10%) }
+                &--flexed { 
+                    display: flex; 
+                    align-items: flex-end;
+                    > *:first-child { flex-shrink: 2}
+                    > *:last-child {flex-basis: 45%; flex-shrink: 1}
+                 } 
+                
             }
         }
     }  

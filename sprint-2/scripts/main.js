@@ -1,3 +1,4 @@
+// DATA SET  
   const comments = [{
     name: 'Michael Lyons',
     timeStamp: '12/18/2018',
@@ -16,38 +17,16 @@
     comment: 'How can someone be so good!!! You can tell he lives for this and loves to do it every day. Everytime I see him I feel instantly happy! He’s definitely my favorite ever!',
     picture: ''
   }];
-
-// EVENT LISTENER when clicking submit button
-let submitBtn = document.querySelector('#submit-btn');
-submitBtn.addEventListener('click', function(event){
-  let today = new Date();
-  event.preventDefault();
-  let name = document.querySelector('#name');
-  let comment = document.querySelector('#comment');
-  comments.unshift({
-    name: name.value,
-    comment: comment.value,
-    timeStamp: `${today.getMonth()+1}/${today.getDate()}/${today.getFullYear()}`,
-    picture: ''
-  })
-
-  name.value = "";
-  comment.value = "";
-  clearComments(); // clears all existing comments
-  displayComments(comments);
-});
   
-const clearComments = () => {
-   // remove existing comments
-   const commentsContainer = document.querySelector('.comments-container');
-   commentsContainer.innerHTML = "";
-}
 
-function displayComments (comments) {
+// FUNCTIONS
+const clearComments = () => document.querySelector('.comments-container').innerHTML = "";
+
+const displayComment = comments => {
   let targetDiv = document.querySelector('.comments-container');
   let parent = document.createElement('div');
   parent.classList.add('comments');
-    comments.forEach(function(item){
+    comments.forEach(item => {
         // left side of comment 
         let comment = document.createElement('div');
         comment.classList.add('comment');
@@ -84,5 +63,56 @@ function displayComments (comments) {
     targetDiv.appendChild(parent);
 }
 
+// EVENT LISTENERS
+document.querySelector('.form').addEventListener('submit', e => {
+  e.preventDefault(); // stops the browser from refreshing
+  let name = document.querySelector('#name');
+  let comment = document.querySelector('#comment');
+  comments.unshift({
+    name: e.target.name.value,
+    comment: e.target.comment.value,
+    timeStamp: new Date(Date.now())
+  })
+
+  e.target.name.value = "";
+  e.target.comment.value = "";
+  clearComments(); // clears all existing comments
+  displayComment(comments);
+});
+
+// dynamic time stamp
+const dynamicTimeStamp = timestamp => {
+  const time = [  
+  { unit: 'seconds', divider: 60 },
+  { unit: 'minutes', divider: 60 },
+  { unit: 'hours',   divider: 24 },
+  { unit: 'days',    divider: 7  },
+  { unit: 'weeks',   divider: 4  },
+  { unit: 'months',  divider: 12  }];
+  let toConvert = new Date(timestamp);
+  let rightNow = new Date(Date.now());
+  let res = Math.abs(toConvert - rightNow); // get the difference of the two dates in milliseconds
+  res /= 1000; // convert milliseconds to seconds
+  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
+
+  if (res > 0){
+    for(let i = 0; i < time.length; i++){
+      if (i == time.length-1){
+        // if the difference between year from timestamp and is <= 0 go to next if. Else, output result in years
+        let year = Math.abs(toConvert.getFullYear() - rightNow.getFullYear());
+        if (year <= 0){
+          // subtract month from rightNow to toConvert and output result in months
+          let month = Math.abs((toConvert.getMonth()+1) - (rightNow.getMonth()+1)); // +1 because getMonth() returns a value from 0-11
+          return `${month} month${month!= 1?'s':''} ago`;
+        } else return `${year} year${year!= 1?'s':''} ago`;
+      }
+      else  {
+        if (res < time[i].divider) return `${Math.round(res)} ${time[i].unit}${res!= 1?'s':''} ago`;
+        else res /= time[i].divider;
+      }
+    }
+  } else return `Just now`;
+} 
+
 // main flow starts here
-displayComments(comments);
+displayComment(comments);

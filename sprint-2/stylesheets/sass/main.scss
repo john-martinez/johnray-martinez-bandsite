@@ -109,7 +109,7 @@
     }
 }
 
-.article__main.comment-section { @include desktop  {@include set-padding(0, 15%) } }
+.article__main.comment-section { @include desktop  { @include set-padding(0, 15%) } }
 
 .comment {
     display: flex;
