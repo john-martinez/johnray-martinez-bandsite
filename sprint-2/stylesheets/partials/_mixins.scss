@@ -382,6 +382,7 @@
         }
     
         @include tablet {
+            min-height: 100vh;
             &__text { @include text(3.5rem, 4.25rem) }
         }
     
