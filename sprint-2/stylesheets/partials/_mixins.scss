@@ -19,13 +19,12 @@
     @content;
 }
 
-@mixin list-reset {
-    list-style: none;
+@mixin list-reset { list-style: none;
     @content;
 }
 
 // BREAKPOINTS
-@mixin tablet {
+@mixin tablet { 
     @media screen and (min-width: $tablet-breakpoint){
         @content;
     }
@@ -148,63 +147,56 @@
             align-items: center;
             color: $silver;
         }    
+
         &__item {
             @include flex-container;
             width: 100%;
             font-size: 1.25rem;
     
-            &:nth-of-type(1){
-                @include set-padding(0, 2%);
-            }
-    
-            &__links {
-                @include list-reset;
-                @include flex-container;
-                justify-content: space-evenly; 
-                width: 100%;
-    
-                > * {
-                    @include link-reset{
-                        text-align: center;
-                        width: 50%;
-    
-                        > * {
-                            display: inline-block;
-                            height: 100%;
-                        }
-                    }
-    
-                    &:hover {
-                        @include offset-on-hover;
-                    }
-                }
-    
-                &--active {
-                    @include active;
-                }
-            }
+            &:nth-of-type(1){ @include set-padding(0, 2%) }
         }
-    
+
+        &__links {
+            @include list-reset;
+            @include flex-container;
+            justify-content: space-evenly; 
+            width: 100%;
+
+            > * {
+                @include link-reset{
+                    text-align: center;
+                    width: 50%;
+
+                    > * {
+                        display: inline-block;
+                        height: 100%;
+                        @include set-padding(15px, 35px)
+                    }
+                }
+                &:hover { @include offset-on-hover }
+            }
+            &--active { @include active }
+        }
+
         @include tablet { 
             // @include set-padding(0, 2%);
             width: 100%;
             &__item {
                 width: auto;
                 align-items: center;   
-    
-                &__links {
-                    > * {
-                        @include text(1.14rem, 1.38rem){
-                            width: auto; 
-                            & > * {@include set-padding(15px, 35px) }
-                        }
+            }
+            
+            &__links {
+                > * {
+                    @include text(1.14rem, 1.38rem){
+                        width: auto; 
+                        & > * {@include set-padding(15px, 35px) }
                     }
                 }
-            } 
+            }
         }
         @include desktop{
             @include set-padding(0vh); 
-    
             &__item {
                 margin-right: 4%;
     
