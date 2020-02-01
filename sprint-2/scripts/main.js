@@ -1,4 +1,6 @@
-// DATA SET  
+window.onload = () => main();
+
+  // DATA SET  
   const comments = [{
     name: 'Michael Lyons',
     timeStamp: '12/18/2018',
@@ -14,17 +16,17 @@
     timeStamp: '11/15/2018',
     comment: 'How can someone be so good!!! You can tell he lives for this and loves to do it every day. Everytime I see him I feel instantly happy! He’s definitely my favorite ever!'
   }];
-  
 
-// FUNCTIONS
-const clearComments = () => document.querySelector('.comments-container').innerHTML = "";
 
-const displayComment = comments => {
+  // FUNCTIONS
+  const clearComments = () => document.querySelector('.comments-container').innerHTML = "";
+
+  const displayComment = comments => {
   let targetDiv = document.querySelector('.comments-container');
   let parent = document.createElement('div');
   parent.classList.add('comments');
     comments.forEach(item => {
-        // left side of comment 
+        // left side of comment row
         let comment = document.createElement('div');
         comment.classList.add('comment');
         let commentLeft = document.createElement('div');
@@ -34,7 +36,7 @@ const displayComment = comments => {
         commentLeft.appendChild(commentImage);
         comment.appendChild(commentLeft);
         
-        // right side of comment
+        // right side of comment row
         let commentRight = document.createElement('div');
         commentRight.classList.add('comment__right');
         let commentHeader = document.createElement('div');
@@ -58,10 +60,47 @@ const displayComment = comments => {
         parent.appendChild(comment);
     });
     targetDiv.appendChild(parent);
-}
+  }
 
-// EVENT LISTENERS
-document.querySelector('.form').addEventListener('submit', e => {
+  const dynamicTimeStamp = timestamp => {
+    const time = [  
+    { unit: 'sec', divider: 60 },
+    { unit: 'min', divider: 60 },
+    { unit: 'hr',   divider: 24 },
+    { unit: 'day',    divider: 7  },
+    { unit: 'wk',   divider: 4  },
+    { unit: 'mon',  divider: 12  }];
+    let toConvert = new Date(timestamp);
+    let rightNow = new Date(Date.now());
+    let res = rightNow - toConvert; // get the difference of the two dates in milliseconds
+    res /= 1000; // convert milliseconds to seconds
+
+
+    if (res >= 1){
+      for(let i = 0; i < time.length; i++){
+        // this block triggers if timestamp is more than or equal to 4 weeks
+        if (i == time.length-1){ 
+          // convert year to months (1year = 12 months) and add the rest of the months to the result
+          // add toConvert month and rightNow month to their respective results
+          let rightNowMonths = (rightNow.getFullYear()*12) + (rightNow.getMonth()+1); 
+          let toConvertMonths = (toConvert.getFullYear()*12) + (toConvert.getMonth()+1);
+          // subtract the results and you will get the results in months format
+          res = rightNowMonths - toConvertMonths; 
+          if (res >= 12) return `${Math.floor(res/12)} yr${(Math.floor(res/12)>=2)?'s':''} ago`;
+          else return `${res} mon${res!= 1?'s':''} ago`;
+        }
+        else  {
+          // cycle through the time array and divide res by time[i].divider
+          if (res < time[i].divider) return `${Math.round(res)} ${time[i].unit}${res!= 1?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
+          else res /= time[i].divider;
+        }
+      }
+    } else return `Just now`;
+  } 
+
+
+  // EVENT LISTENERS
+  document.querySelector('.form').addEventListener('submit', e => {
   e.preventDefault(); // stops the browser from refreshing
   let name = document.querySelector('#name');
   let comment = document.querySelector('#comment');
@@ -75,44 +114,9 @@ document.querySelector('.form').addEventListener('submit', e => {
   e.target.comment.value = "";
   clearComments(); // clears all existing comments
   displayComment(comments);
-});
+  });
 
-// dynamic time stamp
-const dynamicTimeStamp = timestamp => {
-  const time = [  
-  { unit: 'sec', divider: 60 },
-  { unit: 'min', divider: 60 },
-  { unit: 'hr',   divider: 24 },
-  { unit: 'day',    divider: 7  },
-  { unit: 'wk',   divider: 4  },
-  { unit: 'mon',  divider: 12  }];
-  let toConvert = new Date(timestamp);
-  let rightNow = new Date(Date.now());
-  let res = rightNow - toConvert; // get the difference of the two dates in milliseconds
-  res /= 1000; // convert milliseconds to seconds
- 
-
-  if (res >= 1){
-    for(let i = 0; i < time.length; i++){
-      // this block triggers if timestamp is more than or equal to 4 weeks
-      if (i == time.length-1){ 
-        // convert year to months (1year = 12 months) and add the rest of the months to the result
-        // add toConvert month and rightNow month to their respective results
-        let rightNowMonths = (rightNow.getFullYear()*12) + (rightNow.getMonth()+1); 
-        let toConvertMonths = (toConvert.getFullYear()*12) + (toConvert.getMonth()+1);
-        // subtract the results and you will get the results in months format
-        res = rightNowMonths - toConvertMonths; 
-        if (res >= 12) return `${Math.floor(res/12)} yr${(Math.floor(res/12)>=2)?'s':''} ago`;
-        else return `${res} mon${res!= 1?'s':''} ago`;
-      }
-      else  {
-        // cycle through the time array and divide res by time[i].divider
-        if (res < time[i].divider) return `${Math.round(res)} ${time[i].unit}${res!= 1?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
-        else res /= time[i].divider;
-      }
-    }
-  } else return `Just now`;
-} 
-
-// main flow starts here
-displayComment(comments);
+  // MAIN FLOW STARTS HERE
+  const main = () => { 
+    displayComment(comments); // populate 
+  }
