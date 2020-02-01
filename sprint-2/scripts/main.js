@@ -19,7 +19,7 @@ window.onload = () => main();
 
 
   // FUNCTIONS
-  const clearComments = () => document.querySelector('.comments-container').innerHTML = "";
+  const clearComments = target => target.removeChild(target.firstElementChild);
 
   const displayComment = comments => {
   let targetDiv = document.querySelector('.comments-container');
@@ -112,7 +112,7 @@ window.onload = () => main();
 
   e.target.name.value = "";
   e.target.comment.value = "";
-  clearComments(); // clears all existing comments
+  clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
   displayComment(comments);
   });
 
