@@ -91,7 +91,7 @@ window.onload = () => main();
         }
         else  {
           // cycle through the time array and divide res by time[i].divider
-          if (res < time[i].divider) return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
+          if (Math.round(res) < time[i].divider) return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
           else res /= time[i].divider;
         }
       }
@@ -115,6 +115,6 @@ window.onload = () => main();
   });
 
   // MAIN FLOW STARTS HERE
-  const main = () => { 
+  const main = () => {  
     displayComment(comments); // populate 
   }
