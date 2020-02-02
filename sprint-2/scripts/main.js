@@ -102,8 +102,6 @@ window.onload = () => main();
   // EVENT LISTENERS
   document.querySelector('.form').addEventListener('submit', e => {
   e.preventDefault(); // stops the browser from refreshing
-  let name = document.querySelector('#name');
-  let comment = document.querySelector('#comment');
   comments.unshift({
     name: e.target.name.value,
     comment: e.target.comment.value,
