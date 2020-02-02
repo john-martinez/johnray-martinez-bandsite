@@ -1,5 +1,3 @@
-window.onload = () => main();
-
   // DATA SET  
   const comments = [{
     name: 'Michael Lyons',
@@ -19,6 +17,10 @@ window.onload = () => main();
 
 
   // FUNCTIONS
+  const main = () => {  
+    displayComment(comments); // populate 
+  }
+
   const clearComments = target => target.removeChild(target.firstElementChild);
 
   const displayComment = comments => {
@@ -114,7 +116,7 @@ window.onload = () => main();
   displayComment(comments);
   });
 
+
+  main();
+
   // MAIN FLOW STARTS HERE
-  const main = () => {  
-    displayComment(comments); // populate 
-  }

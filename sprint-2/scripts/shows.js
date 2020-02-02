@@ -1,4 +1,4 @@
-window.onload = () => main();  
+ 
 let data = [{
     date: `Mon Dec 17 2018`,
     venue: `Ronald Lane`,
@@ -30,7 +30,8 @@ let data = [{
     location: `San Francisco, CA`  
   }];
 
-
+  // functions
+  const main = () => createTable(data);
   const createTable = data => {
     let targetDiv = document.querySelector('.rows-container');
     let parent = document.createElement('div');
@@ -58,6 +59,9 @@ let data = [{
     })
     targetDiv.appendChild(parent);
   }
-  
+ 
   // MAIN FLOW STARTS HERE
-  const main = () => createTable(data);
+  main(); 
+
+
+  
