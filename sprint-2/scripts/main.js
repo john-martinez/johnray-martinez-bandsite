@@ -68,9 +68,9 @@
     const time = [  
     { unit: 'sec', divider: 60 },
     { unit: 'min', divider: 60 },
-    { unit: 'hr',   divider: 24 },
-    { unit: 'day',    divider: 7  },
-    { unit: 'wk',   divider: 4  },
+    { unit: 'hr',  divider: 24 },
+    { unit: 'day', divider: 7  },
+    { unit: 'wk',  divider: 4  },
     { unit: 'mo',  divider: 12  }];
     let toConvert = new Date(timestamp);
     let rightNow = new Date(Date.now());
@@ -116,7 +116,7 @@
   displayComment(comments);
   });
 
-
+  // MAIN FLOW STARTS HERE
   main();
 
-  // MAIN FLOW STARTS HERE
+
