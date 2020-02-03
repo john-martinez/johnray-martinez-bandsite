@@ -347,7 +347,7 @@
         text-transform: uppercase;
         padding: 20px;
         font-size: 1.1rem;
-        &:hover { @include offset-on-hover }
+        &:hover { @include offset-on-hover($orange, $orange) }
         @content;
     }  
 }
