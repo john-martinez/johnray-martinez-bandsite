@@ -24,45 +24,45 @@
   const clearComments = target => target.removeChild(target.firstElementChild);
 
   const displayComment = comments => {
-  let targetDiv = document.querySelector('.comments-container');
-  let parent = document.createElement('div');
-  parent.classList.add('comments');
+    let targetDiv = document.querySelector('.comments-container');
+    let parent = document.createElement('div');
+    parent.classList.add('comments');
     comments.forEach(item => {
-        // left side of comment row
-        let comment = document.createElement('div');
-        comment.classList.add('comment');
-        let commentLeft = document.createElement('div');
-        commentLeft.classList.add('comment__left');
-        let commentImage = document.createElement('div');
-        commentImage.classList.add('comment__image');
-        commentLeft.appendChild(commentImage);
-        comment.appendChild(commentLeft);
-        
-        // right side of comment row
-        let commentRight = document.createElement('div');
-        commentRight.classList.add('comment__right');
-        let commentHeader = document.createElement('div');
-        commentHeader.classList.add('comment__header');
-        let commentAuthor = document.createElement('span');
-        commentAuthor.classList.add('comment__author');
-        commentAuthor.innerText =  item.name;
-        commentHeader.appendChild(commentAuthor);
-        let commentTimeStamp = document.createElement('span');
-        commentTimeStamp.classList.add('comment__time-stamp');
-        commentTimeStamp.innerText = dynamicTimeStamp(item.timeStamp);
-        commentHeader.appendChild(commentTimeStamp);
-        commentRight.appendChild(commentHeader);
-        let commentBlurb = document.createElement('div');
-        commentBlurb.classList.add('comment__blurb');
-        let blurb = document.createElement('p');
-        blurb.innerText = item.comment;
-        commentBlurb.appendChild(blurb);
-        commentRight.appendChild(commentBlurb);
-        comment.appendChild(commentRight);
-        parent.appendChild(comment);
+      // left side of comment row
+      let comment = document.createElement('div');
+      comment.classList.add('comment');
+      let commentLeft = document.createElement('div');
+      commentLeft.classList.add('comment__left');
+      let commentImage = document.createElement('div');
+      commentImage.classList.add('comment__image');
+      commentLeft.appendChild(commentImage);
+      comment.appendChild(commentLeft);
+      
+      // right side of comment row
+      let commentRight = document.createElement('div');
+      commentRight.classList.add('comment__right');
+      let commentHeader = document.createElement('div');
+      commentHeader.classList.add('comment__header');
+      let commentAuthor = document.createElement('span');
+      commentAuthor.classList.add('comment__author');
+      commentAuthor.innerText =  item.name;
+      commentHeader.appendChild(commentAuthor);
+      let commentTimeStamp = document.createElement('span');
+      commentTimeStamp.classList.add('comment__time-stamp');
+      commentTimeStamp.innerText = dynamicTimeStamp(item.timeStamp);
+      commentHeader.appendChild(commentTimeStamp);
+      commentRight.appendChild(commentHeader);
+      let commentBlurb = document.createElement('div');
+      commentBlurb.classList.add('comment__blurb');
+      let blurb = document.createElement('p');
+      blurb.innerText = item.comment;
+      commentBlurb.appendChild(blurb);
+      commentRight.appendChild(commentBlurb);
+      comment.appendChild(commentRight);
+      parent.appendChild(comment);
     });
     targetDiv.appendChild(parent);
-  }
+  } 
 
   const dynamicTimeStamp = timestamp => {
     const time = [  
@@ -103,17 +103,17 @@
 
   // EVENT LISTENERS
   document.querySelector('.form').addEventListener('submit', e => {
-  e.preventDefault(); // stops the browser from refreshing
-  comments.unshift({
-    name: e.target.name.value,
-    comment: e.target.comment.value,
-    timeStamp: new Date(Date.now())
-  })
+    e.preventDefault(); // stops the browser from refreshing
+    comments.unshift({
+      name: e.target.name.value,
+      comment: e.target.comment.value,
+      timeStamp: new Date(Date.now())
+    })
 
-  e.target.name.value = "";
-  e.target.comment.value = "";
-  clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
-  displayComment(comments);
+    e.target.name.value = "";
+    e.target.comment.value = "";
+    clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
+    displayComment(comments);
   });
 
   // MAIN FLOW STARTS HERE
