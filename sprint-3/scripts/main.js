@@ -15,6 +15,10 @@
   //   comment: 'How can someone be so good!!! You can tell he lives for this and loves to do it every day. Everytime I see him I feel instantly happy! He’s definitely my favorite ever!'
   // }];
 
+  // CONSTANT VARIABLES
+    const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d6a8';
+    const API_LINK = 'https://project-1-api.herokuapp.com/';
+    const ROUTE = 'comments';
 
   // FUNCTIONS
   const main = () => {  
@@ -105,25 +109,33 @@
   // EVENT LISTENERS
   document.querySelector('.form').addEventListener('submit', e => {
     e.preventDefault(); // stops the browser from refreshing
-    comments.unshift({
-      name: e.target.name.value,
-      comment: e.target.comment.value,
-      timeStamp: Date.now()
-    })
-
-    e.target.name.value = "";
-    e.target.comment.value = "";
-    clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
-    displayComment(comments);
+    // comments.unshift({
+    //   name: e.target.name.value,
+    //   comment: e.target.comment.value,
+    //   timeStamp: Date.now()
+    // })
+    postComments(e.target); 
   });
 
   const retrieveComments = () => {
-    const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d6a8';
-    const API_LINK = 'https://project-1-api.herokuapp.com/';
-    const ROUTE = 'comments';
     axios.get(`${API_LINK + ROUTE + API_KEY}`)
     .then(res=>displayComment(res.data))
     .catch(err=>console.log(err));
+  }
+
+  const postComments = (data) => {
+    axios.post(`${API_LINK + ROUTE + API_KEY}`,
+    {
+      name: data.name.value,
+      comment: data.comment.value
+    })
+    .then(res=>{
+      data.name.value = "";
+      data.comment.value = "";
+      clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
+      retrieveComments();
+    })
+    .catch(err=>console.log('Failed to insert comment'))
   }
 
   // MAIN FLOW STARTS HERE
