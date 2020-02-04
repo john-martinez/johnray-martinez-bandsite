@@ -1,0 +1,70 @@
+@import '../partials/fonts';
+@import '../partials/variables';
+@import '../partials/mixins';
+
+// COMMON COMPONENTS IN ALL PAGES
+* {
+    box-sizing: border-box;
+    transition: .3s ease-out;
+}
+
+@include html-preset;
+@include header;
+@include nav;
+@include overlay;
+@include icon;
+@include footer-preset;
+@include main;
+@include btn { @include tablet { max-width: 200px } };
+@include hero { @include background("../../assets/images/hero2.jpg") }
+@include logo{ @include link-reset }
+@include article { 
+    @include desktop { 
+        display: flex; 
+        justify-content: space-between; 
+        &__main { padding: 0 !important; width: 80%; } 
+    } 
+}
+// END OF COMMON ELEMENTS
+
+
+.table {
+    &__header {
+        text-transform: uppercase;
+        color: $dark-silver;
+        & + p:nth-of-type(1){ font-weight: bold }
+    }
+
+    &__row{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid $dark-silver; 
+        padding: 25px 0;
+        justify-content: space-between;
+        &--hide { display: none; color: $dark-silver; }
+        & > p:nth-child(2) { font-weight: bold }
+    }  
+    @include tablet{
+        &__header { display: none }
+        
+        &__row {
+            flex-direction: row;
+            &--hide { display: flex  }
+        
+            > * {
+                width: 100%;
+                flex: 1 0 25%;
+            }
+        } 
+    }
+}
+
+.rows-container { & > * { color: $black }  }
+.iframe-container {
+    width: 100%;
+    @include tablet { width: 70% }
+    @include desktop { width: 100% }
+}
+
+
+

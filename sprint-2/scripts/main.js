@@ -93,7 +93,8 @@
         }
         else  {
           // cycle through the time array and divide res by time[i].divider
-          if (Math.round(res) < time[i].divider) return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`;  // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
+          // ${<unit>!= 1?'s':''}  <--- ternary operator to add 's' if the res is > 1
+          if (Math.round(res) < time[i].divider) return `${Math.round(res)} ${time[i].unit}${Math.round(res)>= 2?'s':''} ago`; 
           else res /= time[i].divider;
         }
       }
