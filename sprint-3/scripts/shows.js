@@ -30,8 +30,11 @@ let data = [{
     location: `San Francisco, CA`  
   }];
 
+  const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d6a8';
+  const API_LINK = 'https://project-1-api.herokuapp.com/';
+  const ROUTE = 'showdates';
   // functions
-  const main = () => createTable(data);
+  const main = () => retrieveShows();
   const createTable = data => {
     let targetDiv = document.querySelector('.rows-container');
     let parent = document.createElement('div');
@@ -41,7 +44,7 @@ let data = [{
       let row = document.createElement('div');
       row.classList.add('table__row');
       
-      for (let i = 0; i < keys.length; i++){
+      for (let i = 1; i < keys.length; i++){ // i starts at 1 to ignore id property
         let p1 = document.createElement('p'); // table header
         let p2 = document.createElement('p'); // table data
         p1.classList.add('table__header');
@@ -60,6 +63,13 @@ let data = [{
     targetDiv.appendChild(parent);
   }
  
+  const retrieveShows = () => {
+    axios.get(`${API_LINK + ROUTE + API_KEY}`)
+      .then(res=>createTable(res.data))
+      .catch(err=>console.log('failed to fetch shows'))
+  }
+
+  retrieveShows();
   // MAIN FLOW STARTS HERE
   main(); 
 
