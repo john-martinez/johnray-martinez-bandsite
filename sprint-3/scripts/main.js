@@ -16,7 +16,7 @@
   // }];
 
   // CONSTANT VARIABLES
-    const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d6a8';
+    const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d3ad';
     const API_LINK = 'https://project-1-api.herokuapp.com/';
     const ROUTE = 'comments';
 
@@ -35,6 +35,7 @@
       // left side of comment row
       let comment = document.createElement('div');
       comment.classList.add('comment');
+      comment.setAttribute('id',item.id);
       let commentLeft = document.createElement('div');
       commentLeft.classList.add('comment__left');
       let commentImage = document.createElement('div');
@@ -109,20 +110,25 @@
   // EVENT LISTENERS
   document.querySelector('.form').addEventListener('submit', e => {
     e.preventDefault(); // stops the browser from refreshing
-    // comments.unshift({
-    //   name: e.target.name.value,
-    //   comment: e.target.comment.value,
-    //   timeStamp: Date.now()
-    // })
     postComments(e.target); 
+  });
+
+  // delete on click
+  document.querySelector('.comments-container').addEventListener('click', e =>{
+    console.log(e.target.parentNode);
+    deleteComment(e.target.id);
   });
 
   const retrieveComments = () => {
     axios.get(`${API_LINK + ROUTE + API_KEY}`)
-    .then(res=>displayComment(res.data))
+    .then(res=>{
+      // sort res.data then call display function and pass the sorted array as a parameter
+      displayComment(res.data.sort((a,b)=>b.timestamp - a.timestamp));
+    })
     .catch(err=>console.log(err));
   }
 
+  // post comment on click
   const postComments = (data) => {
     axios.post(`${API_LINK + ROUTE + API_KEY}`,
     {
@@ -138,7 +144,20 @@
     .catch(err=>console.log('Failed to insert comment'))
   }
 
+  // delete comment on click
+  const deleteComment = id => {
+    axios.delete(`${API_LINK + ROUTE + '/' + id + API_KEY}`)
+    .then(res=>{
+      clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
+      retrieveComments();
+    })
+    .catch(err=>console.log('failed to delete', err))
+  }
+
   // MAIN FLOW STARTS HERE
   main();
+
+  // message for myself
+  console.log("DO NOT FORGET TO FIX YOUR DAMN DELETE FUNCTION. ITS SHIZ RN"); 
 
 

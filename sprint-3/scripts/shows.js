@@ -1,39 +1,40 @@
  
-let data = [{
-    date: `Mon Dec 17 2018`,
-    venue: `Ronald Lane`,
-    location: `San Francisco, CA`
-  },
-  {
-    date: `Tue Jul 18 2019`,
-    venue: `Pier 3 East`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Fri Jul 22 2019`,
-    venue: `View Loungue`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Sat Aug 12 2019`,
-    venue: `Hyatt Agency`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Fri Sep 05 2019`,
-    venue: `Moscow Center`,
-    location: `San Francisco, CA`  
-  },
-  {
-    date: `Wed Aug 11 2019`,
-    venue: `Pres Club`,
-    location: `San Francisco, CA`  
-  }];
+// let data = [{
+//     date: `Mon Dec 17 2018`,
+//     venue: `Ronald Lane`,
+//     location: `San Francisco, CA`
+//   },
+//   {
+//     date: `Tue Jul 18 2019`,
+//     venue: `Pier 3 East`,
+//     location: `San Francisco, CA`  
+//   },
+//   {
+//     date: `Fri Jul 22 2019`,
+//     venue: `View Loungue`,
+//     location: `San Francisco, CA`  
+//   },
+//   {
+//     date: `Sat Aug 12 2019`,
+//     venue: `Hyatt Agency`,
+//     location: `San Francisco, CA`  
+//   },
+//   {
+//     date: `Fri Sep 05 2019`,
+//     venue: `Moscow Center`,
+//     location: `San Francisco, CA`  
+//   },
+//   {
+//     date: `Wed Aug 11 2019`,
+//     venue: `Pres Club`,
+//     location: `San Francisco, CA`  
+//   }];
 
+  // CONSTANT VARIABLES
   const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d6a8';
   const API_LINK = 'https://project-1-api.herokuapp.com/';
   const ROUTE = 'showdates';
-  // functions
+  // FUNCTIONS
   const main = () => retrieveShows();
   const createTable = data => {
     let targetDiv = document.querySelector('.rows-container');
@@ -68,8 +69,6 @@ let data = [{
       .then(res=>createTable(res.data))
       .catch(err=>console.log('failed to fetch shows'))
   }
-
-  retrieveShows();
   // MAIN FLOW STARTS HERE
   main(); 
 
