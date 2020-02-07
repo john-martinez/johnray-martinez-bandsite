@@ -48,7 +48,6 @@
     }
 }
 
-
 // FLEXBOX RELATED
 @mixin flex-container {
     display: flex;
@@ -77,10 +76,13 @@
     }
 }
 
+@mixin change-bgcolor-on-hover ($bgcolor: $black) { &:hover {background-color: darken($bgcolor,5%) } }
+
 @mixin offset-on-hover($color: $orange, $bgcolor: $black) {
-    border-color: $color;
+    border-color: $orange;
     cursor: pointer;
-    background-color: lighten($bgcolor,3%);
+    @include change-bgcolor-on-hover($color);
+    @content;
 
     > * {
         color: $orange;
@@ -173,7 +175,7 @@
                         @include set-padding(15px, 35px)
                     }
                 }
-                &:hover { @include offset-on-hover }
+                &:hover { @include offset-on-hover($black) }
             }
             &--active { @include active }
         }

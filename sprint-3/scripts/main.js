@@ -16,7 +16,7 @@
   // }];
 
   // CONSTANT VARIABLES
-    const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d3ad';
+    const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d4sa';
     const API_LINK = 'https://project-1-api.herokuapp.com/';
     const ROUTE = 'comments';
 
@@ -61,8 +61,42 @@
       commentBlurb.classList.add('comment__blurb');
       let blurb = document.createElement('p');
       blurb.innerText = item.comment;
+      
+      // create a container for the like and delete
+      let actionContainer = document.createElement('div');
+      actionContainer.classList.add('comment__actions');
+
+      // like container 
+      let likeContainer = document.createElement('div');
+      likeContainer.classList.add('comment__likes-container');
+
+      // create like 
+      let likeButton = document.createElement('span'); // LIKE
+      likeButton.classList.add('comment__like-button');
+      likeButton.innerText = `👍 `;
+
+      //create a span for the likes count 
+      let likesCounter = document.createElement('span');
+      likesCounter.classList.add('comment__likes');
+      likesCounter.innerText = item.likes;
+
+      // append like button and like counter in like container  
+      likeContainer.appendChild(likeButton);
+      likeContainer.appendChild(likesCounter);
+
+      // create delete
+      let deleteButton = document.createElement('span'); // DELETE
+      deleteButton.classList.add('comment__delete-button');
+      deleteButton.innerText = '🗑️';
+
+      // append like button and delete button on action container
+      actionContainer.appendChild(likeContainer);
+      actionContainer.appendChild(deleteButton);
+
+      // append action container to  
       commentBlurb.appendChild(blurb);
       commentRight.appendChild(commentBlurb);
+      commentRight.appendChild(actionContainer);
       comment.appendChild(commentRight);
       parent.appendChild(comment);
     });
@@ -113,10 +147,30 @@
     postComments(e.target); 
   });
 
-  // delete on click
+  // ACTIONS BAR EVENTS (LIKE / DELETE)
   document.querySelector('.comments-container').addEventListener('click', e =>{
-    console.log(e.target.parentNode);
-    deleteComment(e.target.id);
+    if(e.target.classList[0] == 'comment__likes-container' || e.target.classList[0] == 'comment__like-button'){
+      // if (e.target.classList[0] === 'comment__like-button') e.target = e.target.parentNode;
+      // e.target = e.target.parentNode;
+      // console.log(e.target.parentNode);
+      // I AM TRYING TO CREATE AN IF STATEMENT THAT CHECKS TO SEE IF E.TARGET HAS A CLASS OF LIKE BUTTON OR COUNT THEN I WILL CHANGE VARIABLES OF E.TARGET TO SOMETHIN ELSE
+
+
+      e.target.children[1].innerText = parseInt(e.target.children[1].innerText) + 1; // increment likes on click
+      // fetch the damn thing with ID
+      axios.get(`${API_LINK + ROUTE + API_KEY}`)
+      .then(res=>{
+        let returnedObj = res.data.find(item=>item.id === e.target.parentNode.parentNode.parentNode.id); // get the object with the ID
+        returnedObj.likes = e.target.innerText;
+        return returnedObj;
+      })
+      .then (res=>incrementLike(e.target.parentNode.parentNode.parentNode.id,res))
+      .catch(err=>console.log(err));
+    }
+    if(e.target.classList[0] == 'comment__delete-button'){
+      deleteComment(e.target.parentNode.parentNode.parentNode.id); // button < comment__actions < comment__right < comment.id
+    }
+    
   });
 
   const retrieveComments = () => {
@@ -154,10 +208,19 @@
     .catch(err=>console.log('failed to delete', err))
   }
 
+  // add like on click
+  const incrementLike = (id, authorDetails) => {
+    console.log(authorDetails);
+    axios.put(`${API_LINK + ROUTE + '/' + id + '/like' + API_KEY}`, authorDetails)
+    .then(res=>{ console.log('SUCCESS')})
+    .catch(err=>console.log('WRONG'));
+  }
+
   // MAIN FLOW STARTS HERE
   main();
 
   // message for myself
   console.log("DO NOT FORGET TO FIX YOUR DAMN DELETE FUNCTION. ITS SHIZ RN"); 
+  console.log("ALSO DO LIKE BUTTON TO INCREASE LIKE per click of like button");
 
 
