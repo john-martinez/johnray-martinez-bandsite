@@ -342,6 +342,7 @@
 @mixin btn {
     .btn {
         background-color: $black;
+        max-height: 90px;
         color: $white;
         outline: none;
         border-radius: 7px;
@@ -399,8 +400,7 @@
                     align-items: flex-end;
                     > *:first-child { flex-shrink: 2}
                     > *:last-child {flex-basis: 45%; flex-shrink: 1}
-                 } 
-                
+                }    
             }
         }
     }  
