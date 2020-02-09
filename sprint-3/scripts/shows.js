@@ -11,10 +11,12 @@
   // ***                    Components                        ***
   // ************************************************************
   class Shows {
-    constructor(shows){ this.shows = shows }
+    constructor(shows){ 
+      this.shows = shows
+     }
     render(){return`
     <div> 
-      ${this.shows.map(show => new Show(show).render())}
+      ${(this.shows.map(show => new Show(show).render())).join(" ")}
     </div>
     `};
   }

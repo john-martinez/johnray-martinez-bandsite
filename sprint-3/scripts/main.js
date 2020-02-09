@@ -52,7 +52,7 @@
     render() {
       return `
       <div class="comments"> 
-        ${this.comments.map(item=> new Comment(item).render())}
+        ${(this.comments.map(item=> new Comment(item).render())).join(" ")}
       </div>
       `
     }
