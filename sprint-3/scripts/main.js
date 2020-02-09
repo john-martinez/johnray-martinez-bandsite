@@ -100,14 +100,32 @@
   } 
 
 
+  const invalidInput = target => {
+    target.classList.add('shake');
+    target.classList.add('wrong-input')
+    setTimeout(()=>target.classList.remove('shake'),200);
+  }
   // ************************************************************
   // ***                  EVENT LISTENERS                     ***
   // ************************************************************
   document.querySelector('.form').addEventListener('submit', e => {
     e.preventDefault(); // stops the browser from refreshing
-    if (e.target.name.value.trim() !== '' && e.target.comment.value.trim() !== '') postComments(e.target); 
+    if (e.target.name.value.trim() !== '' && e.target.comment.value.trim() !== '') {
+      e.target.name.classList.remove('wrong-input');
+      e.target.comment.classList.remove('wrong-input');
+      postComments(e.target); 
+    }
     else {
-      e.target.name.focus();
+      if (e.target.comment.value.trim() === '' ) {
+        invalidInput(e.target.comment);
+        e.target.comment.value = "";
+        e.target.comment.focus();
+      }
+      if (e.target.name.value.trim() === '' ){
+        invalidInput(e.target.name);
+        e.target.name.value = "";
+        e.target.name.focus();
+      } 
     }
   });
 
@@ -144,11 +162,7 @@
         teDeleteId = "";
         DELETE_MODAL.classList.add('invisible');
       }
-      else {
-        MODAL_INPUT.classList.add('shake');
-        MODAL_INPUT.classList.add('wrong-input')
-        setTimeout(()=>MODAL_INPUT.classList.remove('shake'),200);
-      }
+      else invalidInput(MODAL_INPUT);
       MODAL_INPUT.value = "" // clear 
     }
 
@@ -180,8 +194,8 @@
   const postComments = (data) => {
     axios.post(`${API_LINK + ROUTE + API_KEY}`,
     {
-      name: data.name.value,
-      comment: data.comment.value
+      name: data.name.value.trim(),
+      comment: data.comment.value.trim()
     })
     .then(res=>{
       console.log(res.data);
