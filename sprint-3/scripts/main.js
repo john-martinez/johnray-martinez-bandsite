@@ -105,7 +105,10 @@
   // ************************************************************
   document.querySelector('.form').addEventListener('submit', e => {
     e.preventDefault(); // stops the browser from refreshing
-    postComments(e.target); 
+    if (e.target.name.value.trim() !== '' && e.target.comment.value.trim() !== '') postComments(e.target); 
+    else {
+      e.target.name.focus();
+    }
   });
 
   // ACTIONS BAR EVENTS (LIKE / DELETE)
