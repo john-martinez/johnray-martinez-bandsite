@@ -103,6 +103,8 @@
   const invalidInput = target => {
     target.classList.add('shake');
     target.classList.add('wrong-input')
+    target.focus();
+    target.value = "";
     setTimeout(()=>target.classList.remove('shake'),200);
   }
   // ************************************************************
@@ -118,13 +120,9 @@
     else {
       if (e.target.comment.value.trim() === '' ) {
         invalidInput(e.target.comment);
-        e.target.comment.value = "";
-        e.target.comment.focus();
       }
       if (e.target.name.value.trim() === '' ){
         invalidInput(e.target.name);
-        e.target.name.value = "";
-        e.target.name.focus();
       } 
     }
   });
