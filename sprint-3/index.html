@@ -108,7 +108,19 @@
                 </form>
             </div>          
         </article>
-
+        <!-- MODAL THAT SHOWS UP ON DELETE REQUEST -->
+        <div id="delete-modal" class="modal-container invisible">
+            <div id="delete-form" class="modal">
+                <p>You are now deleting a comment. </p>
+                <p>Type "<span class="red">DELETE</span>" to continue deleting the comment.</p>
+                <div class="modal__inputs"> 
+                    <input class="modal__input" type="text" name="answer"> 
+                </div>
+                <button id="modal-delete-button" class="btn"> Delete </button>
+                <span class="modal__exit-button"> x </span>
+            </div>
+        </div>
+          
         <article class="article"> 
             <div class="article__main comment-section">
                 <div class="comments-container">

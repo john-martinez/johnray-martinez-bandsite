@@ -4,6 +4,9 @@
     const API_KEY = '?api_key=1137952d-6747-4954-94c3-ea4214c7d4sa';
     const API_LINK = 'https://project-1-api.herokuapp.com/';
     const ROUTE = 'comments';
+    const DELETE_MODAL = document.querySelector('#delete-modal');
+    let answer = "";
+    let toDeleteId = "";
 
   
   // ************************************************************
@@ -106,13 +109,13 @@
   });
 
   // ACTIONS BAR EVENTS (LIKE / DELETE)
-  document.querySelector('.comments-container').addEventListener('click', e =>{
+  document.querySelector('body').addEventListener('click', e =>{
     let target = e.target;
-    if(target.classList[0] == 'comment__likes-container' || target.classList[0] == 'comment__like-button' || target.classList[0] === 'comment__likes'){
+
+    if (target.classList[0] == 'comment__likes-container' || target.classList[0] == 'comment__like-button' || target.classList[0] === 'comment__likes'){
       // because event bubbling doesnt work, work around is to assign target.parentNode to target to get ID from parent
       if (target.classList[0] === 'comment__like-button' || target.classList[0] === 'comment__likes') target = target.parentNode; 
       target.children[1].innerText = parseInt(target.children[1].innerText) + 1; // increment likes on click
-      console.log(target.parentNode.parentNode.parentNode.parentNode);
       // fetch the damn thing with ID
       axios.get(`${API_LINK + ROUTE + API_KEY}`)
       .then(res=>{
@@ -123,8 +126,28 @@
       .then (res=>incrementLike(target.parentNode.parentNode.parentNode.parentNode.id,res))
       .catch(err=>console.log(err));
     }
-    if(target.classList[0] == 'comment__delete-button'){
-      deleteComment(target.parentNode.parentNode.parentNode.parentNode.id); // button < comment__actions < comment__right < comment.id
+    else if (target.classList[0] == 'comment__delete-button'){
+      // change display: block to DELETE_MODAL on click of any delete button
+      let deleteInput = DELETE_MODAL.children[0].children[2].children[0];
+      deleteInput.value = "";
+      DELETE_MODAL.classList.remove('invisible');
+      deleteInput.focus(); 
+      toDeleteId = target.parentNode.parentNode.parentNode.parentNode.id;
+    }
+
+    else if (target.id == 'modal-delete-button') {
+      answer = DELETE_MODAL.children[0].children[2].children[0].value;
+      if (answer && answer.trim().toUpperCase() == 'DELETE') {
+        deleteComment(toDeleteId); // button < comment__actions < comment__right < comment.id
+        teDeleteId = "";
+        DELETE_MODAL.classList.add('invisible');
+      }
+      answer.value = "" // clear 
+    }
+
+    // EVENT to hide modal when clicking the backdrop
+    if (target.id === 'delete-modal' || target.classList[0] === 'modal__exit-button') { 
+      DELETE_MODAL.classList.add('invisible');
     }
   });
 
