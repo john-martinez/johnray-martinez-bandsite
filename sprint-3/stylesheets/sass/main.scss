@@ -1,6 +1,7 @@
 @import '../partials/fonts';
 @import '../partials/variables';
 @import '../partials/mixins';
+@import '../partials/animations';
 
 // COMMON COMPONENTS IN ALL PAGES
 * {
@@ -29,8 +30,15 @@
 
 // END OF COMMON ELEMENTS
 .red { color: red }
+.wrong-input { border-bottom: 1px solid red !important}
 .text-area { height: 100px }
 .invisible { display: none }
+.shake {
+    animation-name: shake;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+ }
 .image {
     @include image{ margin-bottom: 15px }
     @include tablet { margin-bottom: 0 }
@@ -105,8 +113,10 @@
 }
 
 .article__main.comment-section { 
+    max-width: 780px;
+    margin: 0 auto;
     @include tablet  { @include set-padding(0, 10%) } 
-    @include desktop { @include set-padding(0, 15%) }
+    @include desktop { @include set-padding(0, 10%) }
 }
   .modal-container {
     position: fixed;

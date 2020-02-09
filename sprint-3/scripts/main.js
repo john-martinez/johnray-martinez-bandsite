@@ -5,7 +5,7 @@
     const API_LINK = 'https://project-1-api.herokuapp.com/';
     const ROUTE = 'comments';
     const DELETE_MODAL = document.querySelector('#delete-modal');
-    let answer = "";
+    const MODAL_INPUT = DELETE_MODAL.children[0].children[2].children[0];
     let toDeleteId = "";
 
   
@@ -139,18 +139,23 @@
     }
 
     else if (target.id == 'modal-delete-button') {
-      answer = DELETE_MODAL.children[0].children[2].children[0].value;
-      if (answer && answer.trim().toUpperCase() == 'DELETE') {
+      if (MODAL_INPUT.value && MODAL_INPUT.value.trim().toUpperCase() == 'DELETE') {
         deleteComment(toDeleteId); // button < comment__actions < comment__right < comment.id
         teDeleteId = "";
         DELETE_MODAL.classList.add('invisible');
       }
-      answer.value = "" // clear 
+      else {
+        MODAL_INPUT.classList.add('shake');
+        MODAL_INPUT.classList.add('wrong-input')
+        setTimeout(()=>MODAL_INPUT.classList.remove('shake'),200);
+      }
+      MODAL_INPUT.value = "" // clear 
     }
 
     // EVENT to hide modal when clicking the backdrop
     if (target.id === 'delete-modal' || target.classList[0] === 'modal__exit-button') { 
       DELETE_MODAL.classList.add('invisible');
+      MODAL_INPUT.classList.remove('wrong-input');
     }
   });
 
