@@ -61,6 +61,16 @@
   // ************************************************************
   // ***                 Utility Functions                    ***
   // ************************************************************
+
+  const removeNodeElement = target => console.log(target);
+  const invalidInput = target => {
+    target.classList.add('shake');
+    target.classList.add('wrong-input')
+    target.focus();
+    target.value = "";
+    setTimeout(()=>target.classList.remove('shake'),200);
+  }
+
   const clearComments = target => target.removeChild(target.firstElementChild);
   const dynamicTimeStamp = timestamp => {
     const time = [  
@@ -98,15 +108,7 @@
       }
     } else return `Just now`;
   } 
-
-
-  const invalidInput = target => {
-    target.classList.add('shake');
-    target.classList.add('wrong-input')
-    target.focus();
-    target.value = "";
-    setTimeout(()=>target.classList.remove('shake'),200);
-  }
+  
   // ************************************************************
   // ***                  EVENT LISTENERS                     ***
   // ************************************************************
@@ -207,7 +209,7 @@
   const deleteComment = id => {
     axios.delete(`${API_LINK + ROUTE + '/' + id + API_KEY}`)
     .then(res=>{
-      clearComments(document.querySelector('.comments-container')); // remove pre-existing comments
+      removeNodeElement(document.getElementById(id));
       retrieveComments();
       console.log('DELETED: ', res.data);
     })
@@ -221,6 +223,7 @@
     .then(res=>{ console.log('SUCCESS')})
     .catch(err=>console.log('WRONG'));
   }
+
 
   // ************************************************************
   // ***        Initial function calls on page load           ***
