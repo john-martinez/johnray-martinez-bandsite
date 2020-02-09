@@ -112,11 +112,9 @@
   // ************************************************************
   document.querySelector('.form').addEventListener('submit', e => {
     e.preventDefault(); // stops the browser from refreshing
-    if (e.target.name.value.trim() !== '' && e.target.comment.value.trim() !== '') {
-      e.target.name.classList.remove('wrong-input');
-      e.target.comment.classList.remove('wrong-input');
-      postComments(e.target); 
-    }
+    e.target.name.classList.remove('wrong-input');
+    e.target.comment.classList.remove('wrong-input');
+    if (e.target.name.value.trim() !== '' && e.target.comment.value.trim() !== '') postComments(e.target); 
     else {
       if (e.target.comment.value.trim() === '' ) {
         invalidInput(e.target.comment);
